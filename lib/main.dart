@@ -1,0 +1,27 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'exports.dart';
+
+void main() => runApp(const DamolmoStore());
+
+class DamolmoStore extends StatelessWidget{
+  @override
+  const DamolmoStore({super.key});
+
+ @override
+ Widget build(BuildContext context){
+   SystemChrome.setPreferredOrientations([
+     DeviceOrientation.portraitUp,
+   ]);
+   SystemChrome.setEnabledSystemUIMode (SystemUiMode.manual, overlays: []);
+   return MaterialApp(
+     debugShowCheckedModeBanner: false,
+     home: const HomeScreenView(),
+     routes: {
+       "home" : (_) => const HomeScreenView(),
+       "downloads" : (_) => const DownloadsScreenView(),
+       "settings" : (_) => const SettingsScreenView(),
+     },
+   );
+ }
+}
