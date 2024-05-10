@@ -36,6 +36,13 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
     getRandomBanner(); // Get Random Banner
   }
 
+  bool getDarkModeStatus() => isDarkModeEnabled;
+
+  void setDarkModeStatus(bool state){
+    isDarkModeEnabled = state;
+    notifyListeners();
+  }
+
   void searchAppNavigate() async {
     // Search user requested app and return a list with the result
     apps = [];
@@ -116,7 +123,7 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
   }
 
   navigateToAppPage(BuildContext context, Applications app) =>
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => AppScreenView(app: app)));
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => AppScreenView(app: app, isDarkModeEnabled: isDarkModeEnabled,)));
 
   void compareSongDurations(Duration d, String durationType) async {
     // a method that allow us to compare durations and manage the sound process

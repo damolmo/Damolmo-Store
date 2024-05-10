@@ -31,10 +31,8 @@ class CustomizedNavBar extends StatelessWidget{
           // Home Button
           InkWell(
             onTap: (){
-              viewModel.navigateToRoute(context, "home");
-              viewModel.isDarkModeEnabled? viewModel.isDarkModeEnabled = false : viewModel.isDarkModeEnabled = true;
-              viewModel.notifyListeners();
-            },
+              viewModel.navigateToRoute(context, "home", );
+               },
             child : Container(
               width : getDeviceWidth(context) * 0.25,
               height: getDeviceHeight(context) * 0.1,
@@ -65,7 +63,7 @@ class CustomizedNavBar extends StatelessWidget{
           // Home Button
           InkWell(
             onTap: (){
-              //viewModel.navigateToRoute(context, "downloads");
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => DownloadsScreenView(isDarkModeEnabled: viewModel.isDarkModeEnabled,)));
             },
             child : Container(
                 width : getDeviceWidth(context) * 0.25,
@@ -82,7 +80,7 @@ class CustomizedNavBar extends StatelessWidget{
                     Row(
                       children: [
                         const Spacer(),
-                        Text("Downloads", style: TextStyle(color: Colors.white, fontSize: getDeviceWidth(context) * 0.03, fontWeight: FontWeight.bold, shadows: const [Shadow(color: Colors.black, blurRadius: 24.0, offset: Offset.zero)]), textAlign: TextAlign.center,),
+                        Text("Updates", style: TextStyle(color: Colors.white, fontSize: getDeviceWidth(context) * 0.03, fontWeight: FontWeight.bold, shadows: const [Shadow(color: Colors.black, blurRadius: 24.0, offset: Offset.zero)]), textAlign: TextAlign.center,),
                         const Spacer(),
                       ],
                     )
@@ -95,7 +93,7 @@ class CustomizedNavBar extends StatelessWidget{
           // Home Button
           InkWell(
             onTap: (){
-              //viewModel.navigateToRoute(context, "settings");
+              viewModel.navigateToRoute(context, "settings");
             },
             child : Container(
                 width : getDeviceWidth(context) * 0.25,

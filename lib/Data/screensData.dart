@@ -107,7 +107,11 @@ class ScreensData {
     // A method that drops latest inserts
     List<Screens> screens = [];
     for (String app in screensMap.keys){
-      Screens.dropScreenPerApp(app);
+      try {
+        Screens.dropScreenPerApp(app);
+      } catch (e){
+        // Nothing to do
+      }
     }
 
     insertNewScreens();

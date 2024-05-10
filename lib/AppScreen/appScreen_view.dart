@@ -7,9 +7,11 @@ class AppScreenView extends StackedView<AppScreenModel>{
   @override
   const AppScreenView({
     required this.app,
+    required this.isDarkModeEnabled,
     super.key});
 
   final Applications app;
+  final bool isDarkModeEnabled;
 
   @override
   Widget builder(
@@ -19,46 +21,64 @@ class AppScreenView extends StackedView<AppScreenModel>{
       ){
 
     viewModel.app = app;
+    viewModel.setDarkModeStatus(isDarkModeEnabled);
     viewModel.notifyListeners();
 
-    return Scaffold(
-      body : Stack(
-        children: [
-          // Background Theme
-          BackgroundTheme(viewModel: viewModel),
+    return PopScope(
+      canPop: viewModel.isCategorySelected ? false : true,
+        onPopInvoked: (_){
+        viewModel.isCategorySelected = false;
+        viewModel.notifyListeners();
+        },
+        child: Scaffold(
+            resizeToAvoidBottomInset : false,
+          body : Stack(
+            children: [
+              // Background Theme
+              BackgroundTheme(viewModel: viewModel),
 
-          SingleChildScrollView(
-            child: Stack(
-              children: [
+              SingleChildScrollView(
+                child: Stack(
+                  children: [
 
-                // App Banner
-                AppBanner(viewModel: viewModel),
+                    // App Banner
+                    if (!viewModel.isCategorySelected)
+                    AppBanner(viewModel: viewModel),
 
-                // App Details
-                AppDetails(viewModel: viewModel),
+                    // App Details
+                    if (!viewModel.isCategorySelected)
+                      AppDetails(viewModel: viewModel),
 
-                // App Screen
-                AppScreen(viewModel: viewModel),
+                    // App Screen
+                    if (!viewModel.isCategorySelected)
+                      AppScreen(viewModel: viewModel),
 
-                // App Description
-                AppDescription(viewModel: viewModel),
+                    // App Description
+                    if (!viewModel.isCategorySelected)
+                      AppDescription(viewModel: viewModel),
 
-                // App Footer
-                AppFooter(viewModel: viewModel),
+                    // App Footer
+                    if (!viewModel.isCategorySelected)
+                      AppFooter(viewModel: viewModel),
 
-              ],
-            ),
-          ),
+                  ],
+                ),
+              ),
 
-          // App Bar
-          StoreAppBar(viewModel: viewModel),
+              // App Bar
+              StoreAppBar(viewModel: viewModel),
 
-          // NavBar
-          CustomizedNavBar(viewModel: viewModel)
+              // Category Search
+              if (viewModel.isCategorySelected)
+                CategoryAppsList(viewModel: viewModel),
+
+              // NavBar
+              CustomizedNavBar(viewModel: viewModel)
 
 
-        ],
-                  )
+            ],
+          )
+        ),
     );
   }
 

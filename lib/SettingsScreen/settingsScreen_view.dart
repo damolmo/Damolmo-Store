@@ -13,8 +13,18 @@ class SettingsScreenView extends StackedView<SettingsScreenModel>{
       Widget? child
       ){
     return Scaffold(
+      resizeToAvoidBottomInset : false,
       body: Stack(
         children: [
+
+          // Background Theme
+          BackgroundTheme(viewModel: viewModel),
+
+          // AppBar
+          StoreAppBar(viewModel: viewModel),
+
+          // NavBar
+          CustomizedNavBar(viewModel: viewModel,)
 
         ],
       ),

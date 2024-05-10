@@ -4,7 +4,9 @@ import '../exports.dart';
 
 class HomeScreenView extends StackedView<HomeScreenModel>{
   @override
-  const HomeScreenView({super.key});
+  const HomeScreenView({
+    super.key});
+
 
   @override
   Widget builder(
@@ -12,6 +14,7 @@ class HomeScreenView extends StackedView<HomeScreenModel>{
       HomeScreenModel viewModel,
       Widget? child
       ){
+
     return PopScope(
       canPop: viewModel.isCategorySelected || !viewModel.isExitAllowed ? false : true,
         onPopInvoked: (_){

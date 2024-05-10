@@ -19,7 +19,6 @@ class DamolmoStore extends StatelessWidget{
      home: const HomeScreenView(),
      routes: {
        "home" : (_) => const HomeScreenView(),
-       "downloads" : (_) => const DownloadsScreenView(),
        "settings" : (_) => const SettingsScreenView(),
      },
    );

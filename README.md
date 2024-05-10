@@ -1,16 +1,41 @@
-# damolmo_store
+<img src="assets/logo/play_banner.png"> 
 
-A new Flutter project.
+![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
+![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
 
-## Getting Started
+# Damolmo Store
+OpenSource app store for all my projects
 
-This project is a starting point for a Flutter application.
+# Platform Tested Compatibility
 
-A few resources to get you started if this is your first Flutter project:
+- [x] android
+- [x] web
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# Dependencies
+All plugins used on this project
+```
+dependencies :
+  cupertino_icons: ^1.0.6
+  stacked: ^3.4.2
+  sqflite: ^2.3.3+1
+  sqflite_common_ffi_web: ^0.4.3+1
+  audioplayers: ^6.0.0
+  flutter_launcher_icons: ^0.13.1
+  quiver: ^3.2.1
+  path_provider: ^2.1.3
+  file_picker: ^8.0.3
+  http: ^1.2.1
+  url_launcher: ^6.2.6
+  flutter_app_installer: ^1.0.0
+  dio: ^5.4.3+1
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+
+# Permissions
+All permissions required for this application
+```
+<uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+```

@@ -44,10 +44,10 @@ class TrackingUpdates{
     // A static method that inserts an update for a tracking app
     if (kIsWeb){
       final Database db = await databaseFactoryFfiWeb.openDatabase("store.db");
-      db.insert("pendingUpdates", tracking.toMap());
+      db.insert("trackingUpdates", tracking.toMap());
     } else {
       final Database db = await openDatabase("store.db");
-      db.insert("pendingUpdates", tracking.toMap());
+      db.insert("trackingUpdates", tracking.toMap());
     }
   }
 

@@ -28,13 +28,10 @@ class AppScreenModel extends HomeScreenModel implements Initialisable{
 
   @override
   Future<void> initialise() async {
-    isDarkModeEnabled = super.isDarkModeEnabled;
+    super.getApplications();
     awaitForScreens();
+    super.getDarkModeStatus();
     notifyListeners();
-    await FlutterDownloader.initialize(
-        debug: true, // optional: set to false to disable printing logs to console (default: true)
-        ignoreSsl: true // option: set to false to disable working with http links (default: false)
-    );
   }
 
   void awaitForScreens() async {
@@ -77,7 +74,8 @@ class AppScreenModel extends HomeScreenModel implements Initialisable{
 
   void updateTracking() async {
     // Update tracking version with previous one
-    TrackingUpdates.updatePendingUpdate(TrackingUpdates(appName: app.appName, appVersion: app.appVersion, appChangelog: "", appIcon: app.appLogo));
+      TrackingUpdates.updatePendingUpdate(TrackingUpdates(appName: app.appName, appVersion: app.appVersion, appChangelog: "", appIcon: app.appLogo));
+      TrackingUpdates.insertUpdateIntoTable(TrackingUpdates(appName: app.appName, appVersion: app.appVersion, appChangelog: "", appIcon: app.appLogo));
   }
 
   void addAppToTracking() async {
@@ -96,20 +94,22 @@ class AppScreenModel extends HomeScreenModel implements Initialisable{
               appChangelog: "",
               appIcon: app.appLogo));
     }
+
+    List<TrackingUpdates> track = await TrackingUpdates.retrievePendingUpdates();
+    print(track.length);
   }
 
   void startAppDownload() async {
     // A method that allow us download an app file for both web and android
+
     if (kIsWeb){
       launchUrl(Uri.parse(app.appApkUrl));
     } else {
       // Download app natively
-      File tempFile = File('/storage/emulated/0/Download');
-      File removeFile = File("${tempFile.path}/${app.appName.toLowerCase().replaceAll(" ", "_")}.apk");
-      downloadPath = removeFile.path;
+      File tempFile = File("/storage/emulated/0/Download/${app.appName.toLowerCase().replaceAll(" ", "_")}_${DateTime.now().year}_${DateTime.now().month}_${DateTime.now().day}_${DateTime.now().second}_${DateTime.now().minute}_${DateTime.now().hour}.apk");
+      downloadPath = tempFile.path;
       notifyListeners();
-      if (removeFile.existsSync()) removeFile.deleteSync();
-      await Dio().download(app.appApkUrl, removeFile.path ,
+      await Dio().download(app.appApkUrl, downloadPath ,
         onReceiveProgress: showDownloadProgress);
       fileExists();
     }

@@ -30,7 +30,7 @@ class StoreAppBar extends StatelessWidget{
           // App Icon
           InkWell(
             onTap :  (){
-              viewModel.isDarkModeEnabled ? viewModel.isDarkModeEnabled = false : viewModel.isDarkModeEnabled = true;
+              viewModel.isDarkModeEnabled ? viewModel.setDarkModeStatus(false) : viewModel.setDarkModeStatus(true);
               viewModel.notifyListeners();
             },
             child : Container(
@@ -68,9 +68,14 @@ class StoreAppBar extends StatelessWidget{
               },
 
               onEditingComplete: (){
-                viewModel.searchAppNavigate();
-                SystemChannels.textInput.invokeMethod('TextInput.hide');
-                // TO-DO
+                if (viewModel.searchField.text.isNotEmpty) {
+                  viewModel.searchAppNavigate();
+                  SystemChannels.textInput.invokeMethod('TextInput.hide');
+                } else {
+                  viewModel.isCategorySelected = false;
+                  viewModel.notifyListeners();
+                  SystemChannels.textInput.invokeMethod('TextInput.hide');
+                }
               },
               style: TextStyle(color: viewModel.isDarkModeEnabled ? Colors.white : Colors.black, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.05),
               textAlign: TextAlign.center,
@@ -94,7 +99,14 @@ class StoreAppBar extends StatelessWidget{
             ),
             child: InkWell(
               onTap : (){
-              // TO-DO
+                if (viewModel.searchField.text.isNotEmpty) {
+                  viewModel.searchAppNavigate();
+                  SystemChannels.textInput.invokeMethod('TextInput.hide');
+                } else {
+                  viewModel.isCategorySelected = false;
+                  viewModel.notifyListeners();
+                  SystemChannels.textInput.invokeMethod('TextInput.hide');
+                }
               },
               child : Icon(Icons.search_rounded, color: viewModel.isDarkModeEnabled ? Colors.white : Colors.black, size: 40, shadows: [Shadow(color: viewModel.isDarkModeEnabled ?  Colors.white.withOpacity(0.5) : Colors.black.withOpacity(0.5), blurRadius: 2.0, offset: Offset.zero)],)),
           ),

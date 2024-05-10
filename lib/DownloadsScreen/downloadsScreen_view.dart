@@ -5,8 +5,11 @@ import '../exports.dart';
 class DownloadsScreenView extends StackedView<DownloadsScreenModel>{
   @override
   const DownloadsScreenView({
+    required this.isDarkModeEnabled,
     super.key
 });
+
+  final bool isDarkModeEnabled;
 
   @override
   Widget builder(
@@ -14,9 +17,28 @@ class DownloadsScreenView extends StackedView<DownloadsScreenModel>{
       DownloadsScreenModel viewModel,
       Widget? child
       ){
+
+    print(isDarkModeEnabled);
+    viewModel.setDarkModeStatus(isDarkModeEnabled);
+    viewModel.notifyListeners();
+
     return Scaffold(
+        resizeToAvoidBottomInset : false,
       body : Stack(
         children: [
+
+          // Background Theme
+          BackgroundTheme(viewModel: viewModel),
+
+          // App Bar
+          StoreAppBar(viewModel: viewModel),
+
+          // Pending List
+            PendingList(viewModel: viewModel),
+
+          // Nav Bar
+          CustomizedNavBar(viewModel: viewModel),
+
 
         ],
       )

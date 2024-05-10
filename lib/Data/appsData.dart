@@ -29,7 +29,11 @@ class AppsData{
   static updateApps() async {
     // Updates current apps with new data
     for (Map<String,dynamic> rawApp in appsMap){
-      Applications.updateExistingApplication(Applications.fromMap(rawApp));
+      try {
+        Applications.updateExistingApplication(Applications.fromMap(rawApp));
+      } catch (e){
+        Applications.insertAppIntoTable(Applications.fromMap(rawApp));
+      }
     }
   }
 

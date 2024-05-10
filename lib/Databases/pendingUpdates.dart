@@ -62,6 +62,17 @@ class PendingUpdates{
     }
   }
 
+  static deletePendingUpdate(PendingUpdates pending) async {
+    // A static method that drops a pending update if exists
+    if (kIsWeb){
+      final Database db = await databaseFactoryFfiWeb.openDatabase("store.db");
+      db.delete("pendingUpdates", where: "appName = ?", whereArgs: [pending.appName]);
+    } else {
+      final Database db = await openDatabase("store.db");
+      db.delete("pendingUpdates", where: "appName = ?", whereArgs: [pending.appName]);
+    }
+  }
+
   static Future<List<PendingUpdates>> retrievePendingUpdates() async {
     // A static method that returns all existing pending updates
 

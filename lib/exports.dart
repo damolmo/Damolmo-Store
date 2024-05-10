@@ -13,6 +13,7 @@ export 'AppScreen/widgets/appFooter.dart';
 export 'AppScreen/widgets/appScreen.dart';
 export 'DownloadsScreen/downloadsScreen_view.dart';
 export 'DownloadsScreen/downloadsScreen_model.dart';
+export 'DownloadsScreen/widgets/pendingList.dart';
 export 'SettingsScreen/settingsScreen_view.dart';
 export 'SettingsScreen/settingsScreen_model.dart';
 export 'GlobalWidgets/backgroundTheme.dart';
