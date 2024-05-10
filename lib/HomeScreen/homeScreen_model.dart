@@ -16,6 +16,7 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
 
   bool isDarkModeEnabled;
   bool isNewSong = true;
+  bool isHomeScreen = false;
   AudioPlayer player = AudioPlayer();
   String songDuration = "";
   String songPosition = "";

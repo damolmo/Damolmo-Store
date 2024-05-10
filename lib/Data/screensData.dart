@@ -101,6 +101,15 @@ class ScreensData {
       "screen_1" : "assets/apps/whatsapp_direct/screens/screen_1.png",
       "screen_2" : "assets/apps/whatsapp_direct/screens/screen_2.png",
     },
+
+    "Damolmo Store" : {
+      "screen_0" : "assets/apps/damolmo_store/screens/screen_0.png",
+      "screen_1" : "assets/apps/damolmo_store/screens/screen_1.png",
+      "screen_2" : "assets/apps/damolmo_store/screens/screen_2.png",
+      "screen_3" : "assets/apps/damolmo_store/screens/screen_3.png",
+      "screen_4" : "assets/apps/damolmo_store/screens/screen_4.png",
+      "screen_5" : "assets/apps/damolmo_store/screens/screen_5.png",
+    },
   };
 
 

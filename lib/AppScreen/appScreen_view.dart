@@ -40,23 +40,18 @@ class AppScreenView extends StackedView<AppScreenModel>{
                   children: [
 
                     // App Banner
-                    if (!viewModel.isCategorySelected)
                     AppBanner(viewModel: viewModel),
 
                     // App Details
-                    if (!viewModel.isCategorySelected)
                       AppDetails(viewModel: viewModel),
 
                     // App Screen
-                    if (!viewModel.isCategorySelected)
                       AppScreen(viewModel: viewModel),
 
                     // App Description
-                    if (!viewModel.isCategorySelected)
                       AppDescription(viewModel: viewModel),
 
                     // App Footer
-                    if (!viewModel.isCategorySelected)
                       AppFooter(viewModel: viewModel),
 
                   ],
@@ -65,10 +60,6 @@ class AppScreenView extends StackedView<AppScreenModel>{
 
               // App Bar
               StoreAppBar(viewModel: viewModel),
-
-              // Category Search
-              if (viewModel.isCategorySelected)
-                CategoryAppsList(viewModel: viewModel),
 
               // NavBar
               CustomizedNavBar(viewModel: viewModel)
