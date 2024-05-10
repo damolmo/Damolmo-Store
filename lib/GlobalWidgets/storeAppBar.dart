@@ -30,8 +30,7 @@ class StoreAppBar extends StatelessWidget{
           // App Icon
           InkWell(
             onTap :  (){
-              viewModel.isDarkModeEnabled ? viewModel.setDarkModeStatus(false) : viewModel.setDarkModeStatus(true);
-              viewModel.notifyListeners();
+             // TO-DO
             },
             child : Container(
             width: getDeviceWidth(context) * 0.1,

@@ -62,6 +62,17 @@ class TrackingUpdates{
     }
   }
 
+  static removeTrackingUpdate(TrackingUpdates tracking) async {
+    // A static method that removes an app from tracking
+    if (kIsWeb){
+      final Database db = await databaseFactoryFfiWeb.openDatabase("store.db");
+      db.delete("trackingUpdates", where: "appName = ?", whereArgs: [tracking.appName]);
+    } else {
+      final Database db = await openDatabase("store.db");
+      db.delete("trackingUpdates", where: "appName = ?", whereArgs: [tracking.appName]);
+    }
+  }
+
   static Future<List<TrackingUpdates>> retrievePendingUpdates() async {
     // A static method that returns all existing pending updates
 

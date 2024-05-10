@@ -6,10 +6,12 @@ class DownloadsScreenView extends StackedView<DownloadsScreenModel>{
   @override
   const DownloadsScreenView({
     required this.isDarkModeEnabled,
+    required this.apps,
     super.key
 });
 
   final bool isDarkModeEnabled;
+  final List<Applications> apps;
 
   @override
   Widget builder(
@@ -42,7 +44,7 @@ class DownloadsScreenView extends StackedView<DownloadsScreenModel>{
   }
 
   @override
-  DownloadsScreenModel viewModelBuilder(BuildContext context) => DownloadsScreenModel(isDarkModeEnabled: isDarkModeEnabled);
+  DownloadsScreenModel viewModelBuilder(BuildContext context) => DownloadsScreenModel(isDarkModeEnabled: isDarkModeEnabled, apps: apps);
 
 
 

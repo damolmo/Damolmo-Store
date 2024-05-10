@@ -31,8 +31,9 @@ class CustomizedNavBar extends StatelessWidget{
           // Home Button
           InkWell(
             onTap: (){
-              viewModel.navigateToRoute(context, "home", );
-               },
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreenView(isDarkModeEnabled: viewModel.isDarkModeEnabled)));
+
+            },
             child : Container(
               width : getDeviceWidth(context) * 0.25,
               height: getDeviceHeight(context) * 0.1,
@@ -63,7 +64,7 @@ class CustomizedNavBar extends StatelessWidget{
           // Home Button
           InkWell(
             onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => DownloadsScreenView(isDarkModeEnabled: viewModel.isDarkModeEnabled,)));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => DownloadsScreenView(isDarkModeEnabled: viewModel.isDarkModeEnabled, apps: viewModel.apps,)));
             },
             child : Container(
                 width : getDeviceWidth(context) * 0.25,
@@ -93,7 +94,7 @@ class CustomizedNavBar extends StatelessWidget{
           // Home Button
           InkWell(
             onTap: (){
-              viewModel.navigateToRoute(context, "settings");
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => SettingsScreenView(isDarkModeEnabled: viewModel.isDarkModeEnabled, apps: viewModel.apps,)));
             },
             child : Container(
                 width : getDeviceWidth(context) * 0.25,

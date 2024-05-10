@@ -14,12 +14,10 @@ class DamolmoStore extends StatelessWidget{
      DeviceOrientation.portraitUp,
    ]);
    SystemChrome.setEnabledSystemUIMode (SystemUiMode.manual, overlays: []);
-   return MaterialApp(
+   return const MaterialApp(
      debugShowCheckedModeBanner: false,
-     home: const HomeScreenView(),
+     home: HomeScreenView(isDarkModeEnabled: false,),
      routes: {
-       "home" : (_) => const HomeScreenView(),
-       "settings" : (_) => const SettingsScreenView(),
      },
    );
  }

@@ -9,7 +9,12 @@ import '../Databases/applications.dart';
 
 class HomeScreenModel extends BaseViewModel implements Initialisable{
 
-  bool isDarkModeEnabled = false;
+  @override
+  HomeScreenModel({
+    required this.isDarkModeEnabled,
+});
+
+  bool isDarkModeEnabled;
   bool isNewSong = true;
   AudioPlayer player = AudioPlayer();
   String songDuration = "";
@@ -34,9 +39,32 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
     getApplications(); // Get Apps
     getCategories(); // Get Categories
     getRandomBanner(); // Get Random Banner
+    getCurrentTheme(); // Gets current background theme
   }
 
   bool getDarkModeStatus() => isDarkModeEnabled;
+
+  void getCurrentTheme() async {
+    // Gets current theme
+    List<Settings> tempS =  [];
+
+    try {
+      tempS = await Settings.retrieveCustomSettings("Dark Mode");
+      notifyListeners();
+    } catch (e){
+      SettingsData.insertSettingsIntoMap();
+      tempS = await Settings.retrieveCustomSettings("Dark Mode");
+      notifyListeners();
+    }
+
+    if (tempS[0].settingValue == "dark"){
+      isDarkModeEnabled = true;
+      notifyListeners();
+    } else {
+      isDarkModeEnabled = false;
+      notifyListeners();
+    }
+  }
 
   void setDarkModeStatus(bool state){
     isDarkModeEnabled = state;
@@ -123,7 +151,7 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
   }
 
   navigateToAppPage(BuildContext context, Applications app) =>
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => AppScreenView(app: app, isDarkModeEnabled: isDarkModeEnabled,)));
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => AppScreenView(app: app, isDarkModeEnabled: isDarkModeEnabled, apps: apps,)));
 
   void compareSongDurations(Duration d, String durationType) async {
     // a method that allow us to compare durations and manage the sound process

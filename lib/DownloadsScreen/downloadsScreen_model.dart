@@ -7,10 +7,11 @@ class DownloadsScreenModel extends HomeScreenModel implements Initialisable{
   @override
   DownloadsScreenModel({
     required this.isDarkModeEnabled,
-});
+    required this.apps,
+}) : super(isDarkModeEnabled: false);
 
   @override
-  final bool isDarkModeEnabled;
+  bool isDarkModeEnabled;
   List<PendingUpdates> pending = [];
   List<TrackingUpdates> tracking = [];
   List<Applications> apps = [];

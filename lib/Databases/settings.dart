@@ -24,6 +24,11 @@ class Settings {
 
   Map<String,dynamic> toMap() => {"settingName" : settingName, "settingValue" : settingValue, "settingIcon" : settingIcon};
 
+  factory Settings.fromMap(Map<String,dynamic> map) =>
+      Settings(
+          settingName: map["settingName"],
+          settingValue: map["settingValue"],
+          settingIcon: map["settingIcon"]);
 
   static createSettingsTable() async {
     // A static method that allow us to create the settings table
@@ -51,11 +56,50 @@ class Settings {
     // A static method that retrieves an existing setting
     if (kIsWeb){
       final Database db = await databaseFactoryFfiWeb.openDatabase("store.db");
-      db.update("settings", setting.toMap());
+      db.update("settings", where: "settingName = ?", whereArgs: [setting.settingName], setting.toMap());
     } else {
       final Database db = await openDatabase("store.db");
-      db.update("settings", setting.toMap());
+      db.update("settings", where: "settingName = ?", whereArgs: [setting.settingName], setting.toMap());
     }
+  }
+
+  static rawSettingToInstance(List<Map<String,dynamic>> rawSettings, List<Settings> settings){
+    for (Map<String,dynamic> rawSetting in rawSettings){
+      settings.add(Settings.fromMap(rawSetting));
+    }
+    return settings;
+  }
+
+  static Future<List<Settings>> retrieveExistingSettings () async {
+    // A static method that retrieves current existing settings
+
+    List<Settings> settings = [];
+
+    if (kIsWeb){
+      final Database db = await databaseFactoryFfiWeb.openDatabase("store.db");
+      settings = rawSettingToInstance(await db.query("settings"), settings);
+    } else {
+      final Database db = await openDatabase("store.db");
+      settings = rawSettingToInstance(await db.query("settings"), settings);
+    }
+
+    return settings;
+  }
+
+  static Future<List<Settings>> retrieveCustomSettings (String name) async {
+    // A static method that retrieves current existing settings
+
+    List<Settings> settings = [];
+
+    if (kIsWeb){
+      final Database db = await databaseFactoryFfiWeb.openDatabase("store.db");
+      settings = rawSettingToInstance(await db.query("settings", where: "settingName = ?", whereArgs: [name]), settings);
+    } else {
+      final Database db = await openDatabase("store.db");
+      settings = rawSettingToInstance(await db.query("settings", where: "settingName = ?", whereArgs: [name]), settings);
+    }
+
+    return settings;
   }
 
 

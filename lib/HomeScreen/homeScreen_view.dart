@@ -5,8 +5,10 @@ import '../exports.dart';
 class HomeScreenView extends StackedView<HomeScreenModel>{
   @override
   const HomeScreenView({
+    required this.isDarkModeEnabled,
     super.key});
 
+  final bool isDarkModeEnabled;
 
   @override
   Widget builder(
@@ -68,5 +70,5 @@ class HomeScreenView extends StackedView<HomeScreenModel>{
   }
 
   @override
-  HomeScreenModel viewModelBuilder(BuildContext context) => HomeScreenModel();
+  HomeScreenModel viewModelBuilder(BuildContext context) => HomeScreenModel(isDarkModeEnabled: isDarkModeEnabled);
 }

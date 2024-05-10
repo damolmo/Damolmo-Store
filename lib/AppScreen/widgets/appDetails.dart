@@ -92,7 +92,7 @@ class AppDetails extends StatelessWidget{
 
                   },
                     child : Container(
-                      width: viewModel.app.appWebUrl.isEmpty ? getDeviceWidth(context) * 0.65 : getDeviceWidth(context) * 0.325,
+                      width: viewModel.app.appWebUrl.isEmpty ? getDeviceWidth(context) * 0.65 : getDeviceWidth(context) * 0.315,
                       height: getDeviceHeight(context) * 0.07,
                       margin: EdgeInsets.only(
                         right: getDeviceWidth(context) * 0.025
