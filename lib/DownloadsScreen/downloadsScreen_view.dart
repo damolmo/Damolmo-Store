@@ -18,10 +18,6 @@ class DownloadsScreenView extends StackedView<DownloadsScreenModel>{
       Widget? child
       ){
 
-    print(isDarkModeEnabled);
-    viewModel.setDarkModeStatus(isDarkModeEnabled);
-    viewModel.notifyListeners();
-
     return Scaffold(
         resizeToAvoidBottomInset : false,
       body : Stack(
@@ -46,7 +42,7 @@ class DownloadsScreenView extends StackedView<DownloadsScreenModel>{
   }
 
   @override
-  DownloadsScreenModel viewModelBuilder(BuildContext context) => DownloadsScreenModel();
+  DownloadsScreenModel viewModelBuilder(BuildContext context) => DownloadsScreenModel(isDarkModeEnabled: isDarkModeEnabled);
 
 
 

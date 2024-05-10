@@ -14,9 +14,12 @@ class AppScreenModel extends HomeScreenModel implements Initialisable{
 
   @override
   AppScreenModel({
-    required this.app
+    required this.app,
+    required this.isDarkModeEnabled,
 });
 
+  @override
+  final bool isDarkModeEnabled;
   final Applications app;
   List<Screens> appScreens = [];
   List<String> appDetailsValues = [];

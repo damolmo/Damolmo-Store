@@ -79,5 +79,5 @@ class AppScreenView extends StackedView<AppScreenModel>{
   }
 
   @override
-  AppScreenModel viewModelBuilder(BuildContext context) => AppScreenModel(app: app);
+  AppScreenModel viewModelBuilder(BuildContext context) => AppScreenModel(app: app, isDarkModeEnabled: isDarkModeEnabled);
 }

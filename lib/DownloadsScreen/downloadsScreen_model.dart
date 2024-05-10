@@ -4,6 +4,13 @@ import '../exports.dart';
 
 class DownloadsScreenModel extends HomeScreenModel implements Initialisable{
 
+  @override
+  DownloadsScreenModel({
+    required this.isDarkModeEnabled,
+});
+
+  @override
+  final bool isDarkModeEnabled;
   List<PendingUpdates> pending = [];
   List<TrackingUpdates> tracking = [];
   List<Applications> apps = [];
@@ -51,19 +58,18 @@ class DownloadsScreenModel extends HomeScreenModel implements Initialisable{
       for (TrackingUpdates track in tracking){
         if (app.appName == track.appName && app.appVersion != track.appVersion){
           // We've a new update here
-          print("hi");
           pending.add(PendingUpdates(appName: app.appName, appVersion: app.appVersion, appChangelog: "", appIcon: app.appLogo));
           notifyListeners();
           try {
-            PendingUpdates.updatePendingUpdate(
+            PendingUpdates.createPendingUpdatesTable();
+            PendingUpdates.insertUpdateIntoTable(
                 PendingUpdates(
                     appName: app.appName,
                     appVersion: app.appVersion,
                     appChangelog: "",
                     appIcon: app.appLogo));
           } catch (e){
-            PendingUpdates.createPendingUpdatesTable();
-            PendingUpdates.insertUpdateIntoTable(
+            PendingUpdates.updatePendingUpdate(
                 PendingUpdates(
                     appName: app.appName,
                     appVersion: app.appVersion,
