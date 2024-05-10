@@ -12,7 +12,12 @@ import 'package:dio/dio.dart';
 
 class AppScreenModel extends HomeScreenModel implements Initialisable{
 
-  late Applications app;
+  @override
+  AppScreenModel({
+    required this.app
+});
+
+  final Applications app;
   List<Screens> appScreens = [];
   List<String> appDetailsValues = [];
   List<String> appDetailsStr = [];
@@ -25,26 +30,10 @@ class AppScreenModel extends HomeScreenModel implements Initialisable{
   String downloadProgress = "";
   var dio = Dio();
 
-
   @override
-  Future<void> initialise() async {
-    super.getApplications();
-    awaitForScreens();
-    super.getDarkModeStatus();
-    notifyListeners();
-  }
-
-  void awaitForScreens() async {
-    // A method that await for screens
-    CountdownTimer timer = CountdownTimer(const Duration(seconds: 30), const Duration(seconds: 1));
-    var listener = timer.listen(null);
-
-    listener.onData((data) {
-      if (app.appName.isNotEmpty && appScreens.isEmpty){
-        getAppDetails();
-        getAppScreens();
-      }
-    });
+  void initialise() async  {
+    getAppScreens();
+    getAppDetails();
   }
 
   void getAppScreens() async {
@@ -53,10 +42,11 @@ class AppScreenModel extends HomeScreenModel implements Initialisable{
       appScreens = await Screens.retrieveExistingScreensPerApp(app.appName);
       notifyListeners();
     } catch (e){
-      ScreensData.updateScreensApp();
+      ScreensData.insertNewScreens();
       appScreens = await Screens.retrieveExistingScreensPerApp(app.appName);
       notifyListeners();
     }
+    print("[1/2] Completed");
   }
 
   void getAppDetails() async {
@@ -64,6 +54,7 @@ class AppScreenModel extends HomeScreenModel implements Initialisable{
     appDetailsValues = [app.appVersion, app.appMinSDK, app.appCategory, app.appCreationDate, app.appModificationDate];
     appDetailsStr = ["Version", "Android Version", "Category", "Creation Date", "Modification Date"];
     appDetailsIcons = [Icons.text_fields_rounded, Icons.android_rounded, Icons.category_rounded, Icons.date_range_rounded, Icons.update ];
+    print("[2 /2] Completed");
     notifyListeners();
   }
 
@@ -74,8 +65,10 @@ class AppScreenModel extends HomeScreenModel implements Initialisable{
 
   void updateTracking() async {
     // Update tracking version with previous one
-      TrackingUpdates.updatePendingUpdate(TrackingUpdates(appName: app.appName, appVersion: app.appVersion, appChangelog: "", appIcon: app.appLogo));
-      TrackingUpdates.insertUpdateIntoTable(TrackingUpdates(appName: app.appName, appVersion: app.appVersion, appChangelog: "", appIcon: app.appLogo));
+
+    TrackingUpdates.updatePendingUpdate(TrackingUpdates(appName: app.appName, appVersion: app.appVersion, appChangelog: "", appIcon: app.appLogo));
+    TrackingUpdates.insertUpdateIntoTable(TrackingUpdates(appName: app.appName, appVersion: app.appVersion, appChangelog: "", appIcon: app.appLogo));
+
   }
 
   void addAppToTracking() async {
@@ -109,10 +102,14 @@ class AppScreenModel extends HomeScreenModel implements Initialisable{
       File tempFile = File("/storage/emulated/0/Download/${app.appName.toLowerCase().replaceAll(" ", "_")}_${DateTime.now().year}_${DateTime.now().month}_${DateTime.now().day}_${DateTime.now().second}_${DateTime.now().minute}_${DateTime.now().hour}.apk");
       downloadPath = tempFile.path;
       notifyListeners();
-      await Dio().download(app.appApkUrl, downloadPath ,
-        onReceiveProgress: showDownloadProgress);
-      fileExists();
+      downloadFile();
     }
+  }
+
+  void downloadFile() async {
+    await Dio().download(app.appApkUrl, downloadPath ,
+        onReceiveProgress: showDownloadProgress);
+    fileExists();
   }
 
   void showDownloadProgress(received, total) {

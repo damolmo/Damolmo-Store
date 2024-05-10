@@ -13,7 +13,7 @@ class AppDetails extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Container(
-      width: getDeviceWidth(context),
+      width: getDeviceWidth(context) * 0.99,
       height: getDeviceHeight(context) * 0.25,
       margin: EdgeInsets.only(
         top: getDeviceHeight(context) * 0.37,

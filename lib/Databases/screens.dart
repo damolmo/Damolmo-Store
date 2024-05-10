@@ -46,6 +46,17 @@ class Screens {
     }
   }
 
+  static updateScreens(Screens screen) async {
+    // A static method that allow us to insert a screen into the table
+    if (kIsWeb){
+      final Database db = await databaseFactoryFfiWeb.openDatabase("store.db");
+      db.update("screens", where: "screenApp = ? AND screenUri = ?", whereArgs: [screen.screenApp, screen.screenUri],screen.toMap());
+    } else {
+      final Database db = await openDatabase("store.db");
+      db.update("screens", where: "screenApp = ? AND screenUri = ?", whereArgs: [screen.screenApp, screen.screenUri],screen.toMap());
+    }
+  }
+
   static dropScreenPerApp(String appName) async {
     // A method that drops all screens for an app
 
@@ -59,7 +70,7 @@ class Screens {
 
   }
 
-  static retrieveExistingScreensPerApp(String appName) async {
+  static Future<List<Screens>> retrieveExistingScreensPerApp(String appName) async {
     // A static method that retrieves all existing screens for a given app
 
     rawScreenToInstance(List<Map<String,dynamic>> rawScreens, List<Screens> screens){

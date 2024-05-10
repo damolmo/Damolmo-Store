@@ -20,11 +20,7 @@ class AppScreenView extends StackedView<AppScreenModel>{
       Widget? child
       ){
 
-    viewModel.app = app;
-    viewModel.setDarkModeStatus(isDarkModeEnabled);
-    viewModel.notifyListeners();
-
-    return PopScope(
+      return PopScope(
       canPop: viewModel.isCategorySelected ? false : true,
         onPopInvoked: (_){
         viewModel.isCategorySelected = false;
@@ -83,5 +79,5 @@ class AppScreenView extends StackedView<AppScreenModel>{
   }
 
   @override
-  AppScreenModel viewModelBuilder(BuildContext context) => AppScreenModel();
+  AppScreenModel viewModelBuilder(BuildContext context) => AppScreenModel(app: app);
 }

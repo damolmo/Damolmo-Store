@@ -13,7 +13,7 @@ class AppScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Container(
-      width: getDeviceWidth(context),
+      width: getDeviceWidth(context) * 0.99,
       height: getDeviceHeight(context) * 0.5,
       margin: EdgeInsets.only(
          top: getDeviceHeight(context) * 0.6,
@@ -27,7 +27,6 @@ class AppScreen extends StatelessWidget{
           return Container(
             height: getDeviceHeight(context) * 0.4,
             width: getDeviceWidth(context) * 0.5,
-
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.fitHeight,

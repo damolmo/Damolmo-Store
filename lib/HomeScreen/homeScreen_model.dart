@@ -90,8 +90,8 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
       ogApps = await Applications.retrieveAllExistingApplications();
       notifyListeners();
     }
+    notifyListeners();
   }
-
 
 
   void getRandomBanner() async {

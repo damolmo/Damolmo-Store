@@ -103,20 +103,6 @@ class ScreensData {
     },
   };
 
-  static dropPreviousScreens() async {
-    // A method that drops latest inserts
-    List<Screens> screens = [];
-    for (String app in screensMap.keys){
-      try {
-        Screens.dropScreenPerApp(app);
-      } catch (e){
-        // Nothing to do
-      }
-    }
-
-    insertNewScreens();
-  }
-
 
   static insertNewScreens() async {
     // A method that inserts and/ot updates screens
@@ -125,21 +111,14 @@ class ScreensData {
 
     for (String screenApp in screensMap.keys){
       for (String screenUri in screensMap[screenApp].keys){
-        Screens.insertScreenIntoTable(Screens(screenUri: screensMap[screenApp][screenUri], screenApp: screenApp));
+        try {
+          Screens.insertScreenIntoTable(Screens(screenUri: screensMap[screenApp][screenUri], screenApp: screenApp));
+        } catch (e){
+          Screens.updateScreens(Screens(screenUri: screensMap[screenApp][screenUri], screenApp: screenApp));
+        }
       }
     }
   }
 
-  static updateScreensApp() async {
-    // A method that checks the screen integrity
-    List<Screens> screens = [];
-
-    try {
-      screens = await Screens.retrieveExistingScreensPerApp(screensMap.keys.first);
-      dropPreviousScreens();
-    } catch (e){
-      insertNewScreens();
-    }
-  }
 
 }
