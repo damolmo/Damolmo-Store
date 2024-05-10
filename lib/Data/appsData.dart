@@ -9,7 +9,7 @@ class AppsData{
 
   static getLatestData() async {
     // A method with the purpose of getting the latest data and saving it into a variable
-    var data = await http.get(Uri.parse('https://raw.githubusercontent.com/damolmo/damolmo/main/data.txt'));
+    var data = await http.get(Uri.parse('https://raw.githubusercontent.com/damolmo/Damolmo-Store/master/data.txt'));
     appsMap = json.decode(data.body);
     checkDatabaseData();
   }
