@@ -28,6 +28,7 @@ export 'Databases/categories.dart';
 export 'Databases/pendingUpdates.dart';
 export 'Databases/trackingUpdates.dart';
 export 'Databases/screens.dart';
+export 'Databases/themes.dart';
 export 'Databases/settings.dart';
 export 'Data/categoriesData.dart';
 export 'Data/appsData.dart';

@@ -63,6 +63,17 @@ class Settings {
     }
   }
 
+  static deleteExistingSetting(Settings setting) async {
+    // A static method that retrieves an existing setting
+    if (kIsWeb){
+      final Database db = await databaseFactoryFfiWeb.openDatabase("store.db");
+      db.delete("settings", where: "settingName = ?", whereArgs: [setting.settingName]);
+    } else {
+      final Database db = await openDatabase("store.db");
+      db.delete("settings", where: "settingName = ?", whereArgs: [setting.settingName]);
+    }
+  }
+
   static rawSettingToInstance(List<Map<String,dynamic>> rawSettings, List<Settings> settings){
     for (Map<String,dynamic> rawSetting in rawSettings){
       settings.add(Settings.fromMap(rawSetting));

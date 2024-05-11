@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:damolmo_store/Data/themesData.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quiver/async.dart';
@@ -9,12 +10,8 @@ import '../Databases/applications.dart';
 
 class HomeScreenModel extends BaseViewModel implements Initialisable{
 
-  @override
-  HomeScreenModel({
-    required this.isDarkModeEnabled,
-});
-
-  bool isDarkModeEnabled;
+  Color fontColor = Colors.black;
+  Color backgroundColor = Colors.white;
   bool isNewSong = true;
   bool isHomeScreen = false;
   AudioPlayer player = AudioPlayer();
@@ -40,37 +37,65 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
     getApplications(); // Get Apps
     getCategories(); // Get Categories
     getRandomBanner(); // Get Random Banner
-    getCurrentTheme(); // Gets current background theme
+    getCurrentSettings(); // Checks old data
   }
 
-  bool getDarkModeStatus() => isDarkModeEnabled;
-
-  void getCurrentTheme() async {
-    // Gets current theme
-    List<Settings> tempS =  [];
+  void getCurrentSettings() async {
+    // Check if old data still exists
+    List<Settings> temp = [];
 
     try {
-      tempS = await Settings.retrieveCustomSettings("Dark Mode");
-      notifyListeners();
+      temp = await Settings.retrieveCustomSettings("Dark Mode");
+      Settings.deleteExistingSetting(temp[0]);
     } catch (e){
-      SettingsData.insertSettingsIntoMap();
-      tempS = await Settings.retrieveCustomSettings("Dark Mode");
-      notifyListeners();
+      // Nothing to do, everything is fine
+      getCurrentTheme(); // Gets current background theme
     }
 
-    if (tempS[0].settingValue == "dark"){
-      isDarkModeEnabled = true;
-      notifyListeners();
-    } else {
-      isDarkModeEnabled = false;
-      notifyListeners();
-    }
+
   }
 
-  void setDarkModeStatus(bool state){
-    isDarkModeEnabled = state;
+
+  void getCurrentTheme() async {
+    // Get current theme and sets
+    // Background Color
+    // Font Color
+
+    List<Settings> settingsTemp = [];
+
+    try {
+      settingsTemp = await Settings.retrieveCustomSettings("Themes");
+      getCurrentThemeData(settingsTemp[0]);
+    } catch (e){
+     // Nothing to do
+    }
+
+
+  }
+
+  void getCurrentThemeData(Settings setting) async {
+    // A method that returns all required values for a given theme name
+
+    List<Themes> themes = [];
+
+    try {
+      themes = await Themes.retrieveExistingTheme(setting.settingValue);
+      assignThemeData(themes[0]);
+    } catch (e){
+      ThemesData.insertNewThemes();
+      themes = await Themes.retrieveExistingTheme(setting.settingValue);
+      assignThemeData(themes[0]);
+    }
+
+  }
+
+  void assignThemeData(Themes theme) async {
+    // Assigns colors to match current theme selection
+    fontColor = Color(int.parse(theme.themeFontColor, radix: 16));
+    backgroundColor = Color(int.parse(theme.themeBackgroundColor, radix: 16));
     notifyListeners();
   }
+
 
   void searchAppNavigate() async {
     // Search user requested app and return a list with the result
@@ -152,7 +177,7 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
   }
 
   navigateToAppPage(BuildContext context, Applications app) =>
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => AppScreenView(app: app, isDarkModeEnabled: isDarkModeEnabled, apps: apps,)));
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => AppScreenView(app: app, fontColor: fontColor, backgroundColor: backgroundColor, apps: apps,)));
 
   void compareSongDurations(Duration d, String durationType) async {
     // a method that allow us to compare durations and manage the sound process

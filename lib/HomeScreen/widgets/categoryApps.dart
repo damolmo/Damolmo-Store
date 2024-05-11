@@ -40,8 +40,8 @@ class CategoryApps extends StatelessWidget{
                     top: getDeviceHeight(context) * 0.03
                   ),
                   decoration: BoxDecoration(
-                    boxShadow: [BoxShadow(color: viewModel.isDarkModeEnabled ? Colors.white.withOpacity(0.6) : Colors.black.withOpacity(0.6), blurRadius: 10.0, blurStyle: BlurStyle.normal, spreadRadius: 3.0)],
-                    color: viewModel.isDarkModeEnabled ? Colors.black.withOpacity(0.8) : Colors.white,
+                    boxShadow: [BoxShadow(color: viewModel.fontColor.withOpacity(0.6), blurRadius: 10.0, blurStyle: BlurStyle.normal, spreadRadius: 3.0)],
+                    color: viewModel.backgroundColor,
                     borderRadius: BorderRadius.circular(12)
                   ),
                   child: Row(
@@ -66,7 +66,7 @@ class CategoryApps extends StatelessWidget{
                         ),
                         child: Row(
                           children: [
-                            Text(viewModel.categories[index].categoryName, style: TextStyle(color: viewModel.isDarkModeEnabled? Colors.white : Colors.black, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.06), textAlign: TextAlign.left ,),
+                            Text(viewModel.categories[index].categoryName, style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.06), textAlign: TextAlign.left ,),
                             const Spacer(),
                           ],
                         ),

@@ -22,9 +22,9 @@ class TrackingApps extends StatelessWidget{
         bottom: getDeviceHeight(context) * 0.2,
       ),
       decoration: BoxDecoration(
-        boxShadow: [BoxShadow(color: viewModel.isDarkModeEnabled? Colors.white.withOpacity(0.6) : Colors.black.withOpacity(0.6), blurStyle: BlurStyle.normal, blurRadius: 10.0, spreadRadius: 3.0)],
+        boxShadow: [BoxShadow(color: viewModel.fontColor.withOpacity(0.6), blurStyle: BlurStyle.normal, blurRadius: 10.0, spreadRadius: 3.0)],
         borderRadius: BorderRadius.circular(25),
-        color: viewModel.isDarkModeEnabled? Colors.black.withOpacity(0.8) : Colors.white
+        color: viewModel.backgroundColor.withOpacity(0.8)
       ),
       child: ListView.builder(
           itemCount: viewModel.tracking.length,
@@ -37,15 +37,15 @@ class TrackingApps extends StatelessWidget{
                 left: getDeviceWidth(context) * 0.05,
                right: getDeviceWidth(context) * 0.05),
               decoration: BoxDecoration(
-                boxShadow: [BoxShadow(color:  viewModel.isDarkModeEnabled? Colors.white.withOpacity(0.6) : Colors.black.withOpacity(0.6), spreadRadius: 3.0, blurRadius: 6.0, blurStyle: BlurStyle.normal)],
+                boxShadow: [BoxShadow(color: viewModel.fontColor.withOpacity(0.6), spreadRadius: 3.0, blurRadius: 6.0, blurStyle: BlurStyle.normal)],
                 borderRadius: BorderRadius.circular(25),
-                color: viewModel.isDarkModeEnabled? Colors.black.withOpacity(0.8) : Colors.white
+                color: viewModel.backgroundColor.withOpacity(0.8)
               ),
               child: ListTile(
-                leading: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), boxShadow: [BoxShadow(color: viewModel.isDarkModeEnabled? Colors.white.withOpacity(0.6) : Colors.black.withOpacity(0.6))]),child : Image.asset(viewModel.tracking[index].appIcon),),
-                title: Text(viewModel.tracking[index].appName, style: TextStyle(color: viewModel.isDarkModeEnabled? Colors.white : Colors.black, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.04),),
-                subtitle: Text(viewModel.tracking[index].appVersion, style: TextStyle(color: viewModel.isDarkModeEnabled? Colors.white : Colors.black, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.035),),
-                trailing: IconButton(onPressed :(){viewModel.removeSelectedAppFromTracking(viewModel.tracking[index]);}, icon: Icon(Icons.remove_circle_rounded, color: Colors.red, size: 40,),)
+                leading: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), boxShadow: [BoxShadow(color: viewModel.fontColor.withOpacity(0.6))]),child : Image.asset(viewModel.tracking[index].appIcon),),
+                title: Text(viewModel.tracking[index].appName, style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.04),),
+                subtitle: Text(viewModel.tracking[index].appVersion, style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.035),),
+                trailing: IconButton(onPressed :(){viewModel.removeSelectedAppFromTracking(viewModel.tracking[index]);}, icon: const Icon(Icons.remove_circle_rounded, color: Colors.red, size: 40,),)
 
 
               ),

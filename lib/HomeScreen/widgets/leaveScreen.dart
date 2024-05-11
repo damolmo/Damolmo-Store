@@ -23,9 +23,9 @@ class LeaveScreen extends StatelessWidget{
         bottom: getDeviceHeight(context) * 0.35
       ),
       decoration: BoxDecoration(
-        boxShadow: [BoxShadow(color: viewModel.isDarkModeEnabled ? Colors.white.withOpacity(0.6) : Colors.black.withOpacity(0.6), blurRadius: 20.0, blurStyle: BlurStyle.normal, spreadRadius: 3.0)],
+        boxShadow: [BoxShadow(color: viewModel.fontColor.withOpacity(0.6), blurRadius: 20.0, blurStyle: BlurStyle.normal, spreadRadius: 3.0)],
         borderRadius: BorderRadius.circular(25),
-        color: viewModel.isDarkModeEnabled ? Colors.black.withOpacity(0.8) : Colors.white.withOpacity(0.8)
+        color: viewModel.backgroundColor.withOpacity(0.8)
       ),
       child: Column(
         children: [
@@ -39,7 +39,7 @@ class LeaveScreen extends StatelessWidget{
               left: getDeviceWidth(context) * 0.15,
               right: getDeviceWidth(context) * 0.15
             ),
-            child: Text("Exit Store?", style: TextStyle(color: viewModel.isDarkModeEnabled ? Colors.white : Colors.black, fontSize: getDeviceWidth(context) * 0.06, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
+            child: Text("Exit Store?", style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) * 0.06, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
           ),
 
           // Leave Buttons

@@ -58,8 +58,8 @@ class StoreAppBar extends StatelessWidget{
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
-              color: viewModel.isDarkModeEnabled ?  Colors.black.withOpacity(0.6) : Colors.white,
-              boxShadow: [BoxShadow(color: viewModel.isDarkModeEnabled ? Colors.white.withOpacity(0.4) : Colors.black.withOpacity(0.4), blurStyle: BlurStyle.normal, blurRadius: 4.0, spreadRadius: 3.0)]
+              color: viewModel.backgroundColor,
+              boxShadow: [BoxShadow(color: viewModel.fontColor.withOpacity(0.4), blurStyle: BlurStyle.normal, blurRadius: 4.0, spreadRadius: 3.0)]
             ),
             child: TextField(
               onTap: (){
@@ -76,12 +76,12 @@ class StoreAppBar extends StatelessWidget{
                   SystemChannels.textInput.invokeMethod('TextInput.hide');
                 }
               },
-              style: TextStyle(color: viewModel.isDarkModeEnabled ? Colors.white : Colors.black, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.05),
+              style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.05),
               textAlign: TextAlign.center,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: "Tap to search",
-                hintStyle: TextStyle(color: viewModel.isDarkModeEnabled ? Colors.white : Colors.black, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.06,)
+                hintStyle: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.06,)
               ),
               controller: viewModel.searchField,
               keyboardType: TextInputType.name,
@@ -107,7 +107,7 @@ class StoreAppBar extends StatelessWidget{
                   SystemChannels.textInput.invokeMethod('TextInput.hide');
                 }
               },
-              child : Icon(Icons.search_rounded, color: viewModel.isDarkModeEnabled ? Colors.white : Colors.black, size: 40, shadows: [Shadow(color: viewModel.isDarkModeEnabled ?  Colors.white.withOpacity(0.5) : Colors.black.withOpacity(0.5), blurRadius: 2.0, offset: Offset.zero)],)),
+              child : Icon(Icons.search_rounded, color: viewModel.fontColor, size: 40, shadows: [Shadow(color: viewModel.fontColor.withOpacity(0.5), blurRadius: 2.0, offset: Offset.zero)],)),
           ),
         ],
       ),

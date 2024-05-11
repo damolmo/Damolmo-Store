@@ -37,20 +37,20 @@ class PendingList extends StatelessWidget{
                     top: getDeviceHeight(context) * 0.03
                   ),
                   decoration: BoxDecoration(
-                    boxShadow: [BoxShadow(color: viewModel.isDarkModeEnabled ? Colors.white.withOpacity(0.6) : Colors.black.withOpacity(0.6), blurRadius: 10.0, blurStyle: BlurStyle.normal, spreadRadius: 3.0)],
+                    boxShadow: [BoxShadow(color: viewModel.fontColor.withOpacity(0.6), blurRadius: 10.0, blurStyle: BlurStyle.normal, spreadRadius: 3.0)],
                     borderRadius: BorderRadius.circular(15),
-                    color: viewModel.isDarkModeEnabled ? Colors.black.withOpacity(0.9) : Colors.white
+                    color: viewModel.backgroundColor
                   ),
                   child: ListTile(
                     leading: Image.asset(viewModel.pending[index].appIcon),
-                    title: Text(viewModel.pending[index].appName, style: TextStyle(color: viewModel.isDarkModeEnabled ? Colors.white : Colors.black, fontSize: getDeviceWidth(context) * 0.04, fontWeight: FontWeight.bold),) ,
-                    subtitle: Text(viewModel.pending[index].appVersion, style: TextStyle(color: viewModel.isDarkModeEnabled ? Colors.white : Colors.black, fontSize: getDeviceWidth(context) * 0.035)),
-                    trailing: IconButton(onPressed : (){ viewModel.getApp(viewModel.pending[index].appName, context); },icon: Icon(Icons.arrow_forward_ios_rounded, color: viewModel.isDarkModeEnabled ? Colors.white : Colors.black.withOpacity(0.6),),),
+                    title: Text(viewModel.pending[index].appName, style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) * 0.04, fontWeight: FontWeight.bold),) ,
+                    subtitle: Text(viewModel.pending[index].appVersion, style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) * 0.035)),
+                    trailing: IconButton(onPressed : (){ viewModel.getApp(viewModel.pending[index].appName, context); },icon: Icon(Icons.arrow_forward_ios_rounded, color: viewModel.fontColor,),),
                   ),
                 ),
             );
           }
-      ) :  Text("\n\nNo Updates available!\nCheck Again Later :D", style: TextStyle(color: viewModel.isDarkModeEnabled ? Colors.white : Colors.black, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.06), textAlign: TextAlign.center,),
+      ) :  Text("\n\nNo Updates available!\nCheck Again Later :D", style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.06), textAlign: TextAlign.center,),
     );
   }
 

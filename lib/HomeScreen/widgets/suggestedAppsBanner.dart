@@ -32,7 +32,7 @@ class SuggestedAppsBanner extends StatelessWidget{
                       image : AssetImage(viewModel.ogApps.isEmpty ? "assets/apps/damolmo_store/banner.png" : viewModel.ogApps[viewModel.currentBannerIndex].appBanner)
                   ),
                   borderRadius: BorderRadius.circular(15),
-                  boxShadow: [BoxShadow(color: viewModel.isDarkModeEnabled ? Colors.white.withOpacity(0.6) : Colors.black.withOpacity(0.6), blurRadius: 15.0, blurStyle: BlurStyle.normal, spreadRadius: 3.0)]
+                  boxShadow: [BoxShadow(color: viewModel.fontColor.withOpacity(0.6), blurRadius: 15.0, blurStyle: BlurStyle.normal, spreadRadius: 3.0)]
               ),
             ),
         ),

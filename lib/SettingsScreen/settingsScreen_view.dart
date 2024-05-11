@@ -6,11 +6,13 @@ class SettingsScreenView extends StackedView<SettingsScreenModel>{
   @override
   const SettingsScreenView({
     required this.apps,
-    required this.isDarkModeEnabled,
+    required this.fontColor,
+    required this.backgroundColor,
     super.key});
 
-  final bool isDarkModeEnabled;
   final List<Applications> apps;
+  final Color fontColor;
+  final Color backgroundColor;
 
   @override
   Widget builder(
@@ -57,5 +59,5 @@ class SettingsScreenView extends StackedView<SettingsScreenModel>{
   }
 
   @override
-  SettingsScreenModel viewModelBuilder(BuildContext context) => SettingsScreenModel(isDarkModeEnabled: isDarkModeEnabled, apps: apps);
+  SettingsScreenModel viewModelBuilder(BuildContext context) => SettingsScreenModel(fontColor: fontColor, backgroundColor: backgroundColor, apps: apps);
 }

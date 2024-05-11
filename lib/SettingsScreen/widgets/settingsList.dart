@@ -27,7 +27,7 @@ class SettingsList extends StatelessWidget{
           itemBuilder: (context, index){
             return InkWell(
               onTap : (){
-                if (viewModel.settings[index].settingName == "Dark Mode"){
+                if (viewModel.settings[index].settingName == "Themes"){
                   viewModel.isThemeSelection = true;
                   viewModel.notifyListeners();
                 } else if (viewModel.settings[index].settingName == "Tracking Apps"){
@@ -46,14 +46,14 @@ class SettingsList extends StatelessWidget{
                     right: getDeviceWidth(context) * 0.025
                   ),
                   decoration: BoxDecoration(
-                    boxShadow: [BoxShadow(color: viewModel.isDarkModeEnabled ? Colors.white.withOpacity(0.6) : Colors.black.withOpacity(0.6), blurStyle: BlurStyle.normal, blurRadius: 10.0, spreadRadius: 2.0)],
+                    boxShadow: [BoxShadow(color: viewModel.fontColor.withOpacity(0.6), blurStyle: BlurStyle.normal, blurRadius: 10.0, spreadRadius: 2.0)],
                     borderRadius: BorderRadius.circular(12),
-                    color: viewModel.isDarkModeEnabled ?  Colors.black.withOpacity(0.8) : Colors.white
+                    color: viewModel.backgroundColor
                   ),
                   child: ListTile(
-                    leading: Icon(IconData(viewModel.settings[index].settingIcon, fontFamily: 'MaterialIcons'), color: viewModel.isDarkModeEnabled ? Colors.white : Colors.black,),
-                    title: Text(viewModel.settings[index].settingName, style: TextStyle(color: viewModel.isDarkModeEnabled ? Colors.white : Colors.black, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.05),),
-                    trailing: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_forward_ios, color: viewModel.isDarkModeEnabled?  Colors.white : Colors.black.withOpacity(0.6), size : 40), ),
+                    leading: Icon(IconData(viewModel.settings[index].settingIcon, fontFamily: 'MaterialIcons'), color: viewModel.fontColor,),
+                    title: Text(viewModel.settings[index].settingName, style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.05),),
+                    trailing: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_forward_ios, color: viewModel.fontColor.withOpacity(0.6), size : 40), ),
                   ),
                 ),
             );

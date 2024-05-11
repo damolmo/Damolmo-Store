@@ -8,7 +8,7 @@ class CustomizedNavBar extends StatelessWidget{
     super.key
 });
 
-  final viewModel;
+  final dynamic viewModel;
 
   @override
   Widget build(BuildContext context){
@@ -22,16 +22,16 @@ class CustomizedNavBar extends StatelessWidget{
         top: getDeviceHeight(context) * 0.875
       ),
       decoration: BoxDecoration(
-        boxShadow: [BoxShadow(color: viewModel.isDarkModeEnabled? Colors.white.withOpacity(0.1) : Colors.black.withOpacity(0.1), blurRadius: 6.0, blurStyle: BlurStyle.normal, spreadRadius: 3.0)],
+        boxShadow: [BoxShadow(color: viewModel.fontColor.withOpacity(0.1), blurRadius: 6.0, blurStyle: BlurStyle.normal, spreadRadius: 3.0)],
         borderRadius: BorderRadius.circular(25),
-        color: viewModel.isDarkModeEnabled ? Colors.black.withOpacity(0.6) : Colors.white
+        color: viewModel.backgroundColor
       ),
       child : Row(
         children: [
           // Home Button
           InkWell(
             onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreenView(isDarkModeEnabled: viewModel.isDarkModeEnabled)));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreenView()));
 
             },
             child : Container(
@@ -64,7 +64,7 @@ class CustomizedNavBar extends StatelessWidget{
           // Home Button
           InkWell(
             onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => DownloadsScreenView(isDarkModeEnabled: viewModel.isDarkModeEnabled, apps: viewModel.apps,)));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => DownloadsScreenView(fontColor: viewModel.fontColor, backgroundColor: viewModel.backgroundColor, apps: viewModel.apps,)));
             },
             child : Container(
                 width : getDeviceWidth(context) * 0.25,
@@ -94,7 +94,7 @@ class CustomizedNavBar extends StatelessWidget{
           // Home Button
           InkWell(
             onTap: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => SettingsScreenView(isDarkModeEnabled: viewModel.isDarkModeEnabled, apps: viewModel.apps,)));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => SettingsScreenView(fontColor: viewModel.fontColor, backgroundColor: viewModel.backgroundColor, apps: viewModel.apps,)));
             },
             child : Container(
                 width : getDeviceWidth(context) * 0.25,

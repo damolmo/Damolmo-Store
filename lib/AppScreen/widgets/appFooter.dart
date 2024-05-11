@@ -31,13 +31,13 @@ class AppFooter extends StatelessWidget{
                 top: getDeviceHeight(context) * 0.02
               ),
               decoration: BoxDecoration(
-                boxShadow: [BoxShadow(color: viewModel.isDarkModeEnabled ? Colors.white.withOpacity(0.6) : Colors.black.withOpacity(0.6), blurStyle: BlurStyle.normal, blurRadius: 4.0, spreadRadius: 3.0)],
-                color: viewModel.isDarkModeEnabled? Colors.black : Colors.white
+                boxShadow: [BoxShadow(color: viewModel.fontColor.withOpacity(0.6), blurStyle: BlurStyle.normal, blurRadius: 4.0, spreadRadius: 3.0)],
+                color: viewModel.backgroundColor
               ),
               child: ListTile(
-                leading: Icon(viewModel.appDetailsIcons[index], color: viewModel.isDarkModeEnabled ? Colors.white : Colors.black, size: 35,),
-                title: Text(viewModel.appDetailsStr[index], style: TextStyle(color: viewModel.isDarkModeEnabled ? Colors.white : Colors.black, fontSize: getDeviceWidth(context) * 0.05, fontWeight:  FontWeight.bold),),
-                trailing: Text(viewModel.appDetailsValues[index], style: TextStyle(color: viewModel.isDarkModeEnabled? Colors.white : Colors.black, fontSize: getDeviceWidth(context) * 0.03),),
+                leading: Icon(viewModel.appDetailsIcons[index], color: viewModel.fontColor, size: 35,),
+                title: Text(viewModel.appDetailsStr[index], style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) * 0.05, fontWeight:  FontWeight.bold),),
+                trailing: Text(viewModel.appDetailsValues[index], style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) * 0.03),),
               ),
             );
           }

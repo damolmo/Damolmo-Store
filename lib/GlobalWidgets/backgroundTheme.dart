@@ -8,7 +8,7 @@ class BackgroundTheme extends StatelessWidget{
     super.key
 });
 
-  final viewModel;
+  final dynamic viewModel;
 
   @override
   Widget build(BuildContext context){
@@ -16,7 +16,7 @@ class BackgroundTheme extends StatelessWidget{
       width: getDeviceWidth(context),
       height: getDeviceHeight(context),
       decoration: BoxDecoration(
-        color: viewModel.isDarkModeEnabled? Colors.black: Colors.white
+        color: viewModel.backgroundColor
       ),
     );
   }

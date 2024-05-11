@@ -5,12 +5,14 @@ import '../exports.dart';
 class DownloadsScreenView extends StackedView<DownloadsScreenModel>{
   @override
   const DownloadsScreenView({
-    required this.isDarkModeEnabled,
+    required this.fontColor,
+    required this.backgroundColor,
     required this.apps,
     super.key
 });
 
-  final bool isDarkModeEnabled;
+  final Color fontColor;
+  final Color backgroundColor;
   final List<Applications> apps;
 
   @override
@@ -44,7 +46,7 @@ class DownloadsScreenView extends StackedView<DownloadsScreenModel>{
   }
 
   @override
-  DownloadsScreenModel viewModelBuilder(BuildContext context) => DownloadsScreenModel(isDarkModeEnabled: isDarkModeEnabled, apps: apps);
+  DownloadsScreenModel viewModelBuilder(BuildContext context) => DownloadsScreenModel(fontColor: fontColor, backgroundColor: backgroundColor, apps: apps);
 
 
 

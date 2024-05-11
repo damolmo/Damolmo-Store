@@ -8,12 +8,14 @@ class AppScreenView extends StackedView<AppScreenModel>{
   const AppScreenView({
     required this.app,
     required this.apps,
-    required this.isDarkModeEnabled,
+    required this.fontColor,
+    required this.backgroundColor,
     super.key});
 
   final Applications app;
   final List<Applications> apps;
-  final bool isDarkModeEnabled;
+  final Color fontColor;
+  final Color backgroundColor;
 
   @override
   Widget builder(
@@ -72,5 +74,5 @@ class AppScreenView extends StackedView<AppScreenModel>{
   }
 
   @override
-  AppScreenModel viewModelBuilder(BuildContext context) => AppScreenModel(app: app, isDarkModeEnabled: isDarkModeEnabled, apps: apps);
+  AppScreenModel viewModelBuilder(BuildContext context) => AppScreenModel(app: app, fontColor: fontColor, backgroundColor: backgroundColor, apps: apps);
 }

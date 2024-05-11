@@ -5,10 +5,8 @@ import '../exports.dart';
 class AboutAppScreenView extends StackedView<AboutAppScreenModel>{
   @override
   const AboutAppScreenView({
-    required this.isDarkModeEnabled,
     super.key,
 });
-  final bool isDarkModeEnabled;
 
   @override
   Widget builder(

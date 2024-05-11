@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class SettingsData{
 
   static Map<String,dynamic> settingsMap = {
-    "Dark Mode" : {
+    "Themes" : {
       "settingValue" : "light",
       "settingIcon" : Icons.palette.codePoint,
     },

@@ -1,3 +1,5 @@
+import 'package:damolmo_store/Data/themesData.dart';
+import 'package:quiver/async.dart';
 import 'package:stacked/stacked.dart';
 import '../exports.dart';
 import 'package:flutter/material.dart';
@@ -7,21 +9,37 @@ class SettingsScreenModel extends HomeScreenModel implements Initialisable{
 
   @override
   SettingsScreenModel({
-    required this.isDarkModeEnabled,
+    required this.fontColor,
+    required this.backgroundColor,
     required this.apps,
-}) : super(isDarkModeEnabled: false);
+});
 
-  bool isDarkModeEnabled;
+  final Color fontColor;
+  final Color backgroundColor;
   List<Settings> settings = [];
   final List<Applications> apps;
   List<TrackingUpdates> tracking = [];
   bool isThemeSelection = false;
   bool isTrackingListView = false;
+  List<Themes> themes = [];
 
   @override
   void initialise(){
     getCurrentSettings();
     getCurrentTracking();
+    getCurrentThemes();
+  }
+
+  void getCurrentThemes() async {
+    // A method that retrieves current themes on database
+    try {
+      themes = await Themes.retrieveAllExistingTheme();
+      notifyListeners();
+    } catch (e){
+      ThemesData.insertNewThemes();
+      themes = await Themes.retrieveAllExistingTheme();
+      notifyListeners();
+    }
   }
 
   void getCurrentTracking() async {
@@ -48,9 +66,21 @@ class SettingsScreenModel extends HomeScreenModel implements Initialisable{
 
   void changeTheme(String value) async {
     // Update current theme
-    Settings.updateExistingSetting(
-        Settings(settingName: "Dark Mode", settingValue: value, settingIcon: Icons.palette.codePoint));
-    Restart.restartApp();
+
+   Settings.updateExistingSetting(
+          Settings(settingName: "Themes",
+              settingValue: value,
+              settingIcon: Icons.palette.codePoint));
+  }
+
+  restartApp(){
+    CountdownTimer timer = CountdownTimer(const Duration(seconds: 1), const Duration(seconds: 1));
+    // Await some time
+    var listener = timer.listen(null);
+    listener.onData((data) {
+      // Restart app
+      Restart.restartApp();
+    });
   }
 
   void removeSelectedAppFromTracking(TrackingUpdates tracking) async {

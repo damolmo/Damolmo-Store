@@ -30,8 +30,8 @@ class AppDetails extends StatelessWidget{
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              color: viewModel.isDarkModeEnabled ? Colors.black : Colors.white,
-              boxShadow: [BoxShadow(color: viewModel.isDarkModeEnabled ? Colors.white.withOpacity(0.6) : Colors.black.withOpacity(0.6), spreadRadius: 3.0, blurStyle: BlurStyle.normal, blurRadius: 10.0, offset: Offset.zero)]
+              color: viewModel.backgroundColor,
+              boxShadow: [BoxShadow(color: viewModel.fontColor.withOpacity(0.6), spreadRadius: 3.0, blurStyle: BlurStyle.normal, blurRadius: 10.0, offset: Offset.zero)]
             ),
             child: Container(
               width: getDeviceWidth(context) * 0.18,
@@ -53,7 +53,7 @@ class AppDetails extends StatelessWidget{
               top: getDeviceHeight(context) * 0.025
             ),
             decoration: BoxDecoration(),
-            child: Text("${viewModel.app.appName}\n${viewModel.app.appAuthor}", style: TextStyle(color: viewModel.isDarkModeEnabled ? Colors.white : Colors.black, fontSize: getDeviceWidth(context) * 0.055, fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
+            child: Text("${viewModel.app.appName}\n${viewModel.app.appAuthor}", style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) * 0.055, fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
           ),
 
           Container(
@@ -63,7 +63,7 @@ class AppDetails extends StatelessWidget{
               top: getDeviceHeight(context) * 0.2
             ),
             decoration: BoxDecoration(
-                color: viewModel.isDarkModeEnabled ? Colors.white.withOpacity(0.6) : Colors.black,
+                color: viewModel.backgroundColor.withOpacity(0.6),
 
             ),
           ),
@@ -100,7 +100,7 @@ class AppDetails extends StatelessWidget{
                       decoration: BoxDecoration(
                         color: Colors.blueAccent,
                         borderRadius: BorderRadius.circular(15),
-                        boxShadow: [BoxShadow(color: viewModel.isDarkModeEnabled ?  Colors.white.withOpacity(0.6) : Colors.black.withOpacity(0.6), spreadRadius: 2.0, blurStyle: BlurStyle.normal, blurRadius: 2.0)]
+                        boxShadow: [BoxShadow(color: viewModel.fontColor.withOpacity(0.6), spreadRadius: 2.0, blurStyle: BlurStyle.normal, blurRadius: 2.0)]
                       ),
                       child: Row(
                         children: [
@@ -144,7 +144,7 @@ class AppDetails extends StatelessWidget{
                     decoration: BoxDecoration(
                         color: Colors.black,
                         borderRadius: BorderRadius.circular(15),
-                        boxShadow: [BoxShadow(color: viewModel.isDarkModeEnabled ?  Colors.white.withOpacity(0.6) : Colors.black.withOpacity(0.6), spreadRadius: 2.0, blurStyle: BlurStyle.normal, blurRadius: 2.0)]
+                        boxShadow: [BoxShadow(color: viewModel.fontColor.withOpacity(0.6), spreadRadius: 2.0, blurStyle: BlurStyle.normal, blurRadius: 2.0)]
                     ),
                     child: Row(
                       children: [

@@ -33,9 +33,9 @@ class CategoryAppsList extends StatelessWidget{
                 top: getDeviceHeight(context) * 0.05
               ),
               decoration: BoxDecoration(
-                boxShadow: [BoxShadow(color: viewModel.isDarkModeEnabled ? Colors.white.withOpacity(0.6) : Colors.black.withOpacity(0.6), blurStyle: BlurStyle.normal, blurRadius: 12.0, spreadRadius: 3.0)],
+                boxShadow: [BoxShadow(color: viewModel.fontColor.withOpacity(0.6), blurStyle: BlurStyle.normal, blurRadius: 12.0, spreadRadius: 3.0)],
                 borderRadius: BorderRadius.circular(12),
-                color: viewModel.isDarkModeEnabled ? Colors.black.withOpacity(0.8) : Colors.white
+                color: viewModel.backgroundColor
               ),
               child: Row(
                 children: [
@@ -62,7 +62,7 @@ class CategoryAppsList extends StatelessWidget{
                         left: getDeviceWidth(context) * 0.025
                     ),
                     child: Row(
-                      children:  [const Spacer(), Text(viewModel.isCustomSearch ? "Results" : viewModel.categories[viewModel.choosedCategory].categoryName, style: TextStyle(color: viewModel.isDarkModeEnabled ? Colors.white : Colors.black, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.06), textAlign: TextAlign.left,), const Spacer(),
+                      children:  [const Spacer(), Text(viewModel.isCustomSearch ? "Results" : viewModel.categories[viewModel.choosedCategory].categoryName, style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.06), textAlign: TextAlign.left,), const Spacer(),
                     ]),
                   ),
                 ],
@@ -93,20 +93,20 @@ class CategoryAppsList extends StatelessWidget{
                           bottom: viewModel.apps.length -1 ==  index ? getDeviceHeight(context) * 0.025 : 0.0
                       ),
                       decoration: BoxDecoration(
-                          boxShadow: [BoxShadow(color: viewModel.isDarkModeEnabled ? Colors.white.withOpacity(0.6) : Colors.black.withOpacity(0.6), blurStyle: BlurStyle.normal, blurRadius: 6.0, spreadRadius: 3.0)],
+                          boxShadow: [BoxShadow(color: viewModel.fontColor.withOpacity(0.6), blurStyle: BlurStyle.normal, blurRadius: 6.0, spreadRadius: 3.0)],
                           borderRadius: BorderRadius.circular(10),
-                          color: viewModel.isDarkModeEnabled ? Colors.black.withOpacity(0.8) : Colors.white
+                          color: viewModel.backgroundColor
                       ),
                       child: ListTile(
                         leading: Image.asset(viewModel.apps[index].appLogo),
-                        title: Text(viewModel.apps[index].appName, style: TextStyle(color: viewModel.isDarkModeEnabled ? Colors.white : Colors.black, fontSize: getDeviceWidth(context) * 0.045, fontWeight: FontWeight.bold), textAlign: TextAlign.center,) ,
-                        subtitle: Text(viewModel.apps[index].appVersion, style: TextStyle(color: viewModel.isDarkModeEnabled ? Colors.white : Colors.black, fontSize: getDeviceWidth(context) * 0.03), textAlign: TextAlign.center,) ,
+                        title: Text(viewModel.apps[index].appName, style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) * 0.045, fontWeight: FontWeight.bold), textAlign: TextAlign.center,) ,
+                        subtitle: Text(viewModel.apps[index].appVersion, style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) * 0.03), textAlign: TextAlign.center,) ,
                         trailing: IconButton(
                           onPressed : (){
                             viewModel.navigateToAppPage(context, viewModel.apps[index]);
                           },
 
-                          icon: Icon(Icons.arrow_forward_ios_rounded, color: viewModel.isDarkModeEnabled ? Colors.white : Colors.black.withOpacity(0.6), size: 40,),
+                          icon: Icon(Icons.arrow_forward_ios_rounded, color: viewModel.fontColor, size: 40,),
                         ) ,
                       )
                     ),
