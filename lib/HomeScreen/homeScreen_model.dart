@@ -47,6 +47,9 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
       stopSongServices();
     }
 
+    isHomeScreen = true;
+    notifyListeners();
+
     getApplications(); // Get Apps
     getCategories(); // Get Categories
     getRandomBanner(); // Get Random Banner

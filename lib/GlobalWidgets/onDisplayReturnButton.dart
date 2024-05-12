@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../exports.dart';
 
 class OnDisplayReturnButton extends StatelessWidget{
@@ -27,7 +28,12 @@ class OnDisplayReturnButton extends StatelessWidget{
       ),
       child: IconButton(
         onPressed : (){
-          Navigator.of(context).pop();
+          if (viewModel.isHomeScreen){
+            // Exit app from Home screen to avoid the black screen issue
+            SystemNavigator.pop();
+          } else {
+            Navigator.of(context).pop();
+          }
         },
         icon: Icon(Icons.arrow_back_ios_rounded, color: viewModel.fontColor, size: 35,),
       ),
