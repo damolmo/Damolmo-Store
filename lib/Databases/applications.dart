@@ -142,6 +142,21 @@ class Applications {
 
   }
 
+  static Future<List<Applications>> retrieveApplicationByName(String appName) async {
+    List<Applications> apps = [];
+
+    if (kIsWeb){
+      final Database db = await databaseFactoryFfiWeb.openDatabase("store.db");
+      apps = rawAppToInstances(await db.query("applications", where: "appName = ?", whereArgs: [appName]), apps);
+    } else {
+      final Database db = await openDatabase("store.db");
+      apps = rawAppToInstances(await db.query("applications", where: "appName = ?", whereArgs: [appName]), apps);
+    }
+
+    return apps;
+
+  }
+
   static Future<List<Applications>> retrieveAllExistingApplications() async {
     // a static method that retrieves all existing applications
     List<Applications> apps = [];

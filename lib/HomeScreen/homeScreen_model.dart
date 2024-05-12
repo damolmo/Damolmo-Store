@@ -10,6 +10,11 @@ import '../Databases/applications.dart';
 
 class HomeScreenModel extends BaseViewModel implements Initialisable{
 
+  @override
+  HomeScreenModel({
+    required this.isAppInit,
+});
+
   Color fontColor = Colors.black;
   Color backgroundColor = Colors.white;
   bool isNewSong = true;
@@ -28,17 +33,61 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
   bool isCustomSearch = false;
   int choosedCategory = 0;
   int exitCount = 0;
+  int selectedEntry = 0;
+  bool isReturnButtonEnabled = false;
+  bool isAppInit;
 
 
   @override
   void initialise(){
-    //playSong(); // Play a song
-    //playThemeOnLoop(); // Start loop
+    if (isAppInit){
+      playSong(); // Play a song
+      playThemeOnLoop(); // Start loop
+    } else {
+      stopSongServices();
+    }
+
     getApplications(); // Get Apps
     getCategories(); // Get Categories
     getRandomBanner(); // Get Random Banner
     getCurrentSettings(); // Checks old data
+    addStoreToTracking(); // Auto updates for store
+    getReturnButtonState(); // Get gestures config
   }
+
+  List<Applications> getApps() => apps;
+
+  getReturnButtonState() async {
+    // A method that allow us to retrieve current gestures config
+    List<Settings> currentSetting = [];
+
+    try {
+      currentSetting = await Settings.retrieveCustomSettings("Return Button");
+    } catch (e){
+      // nothing to do
+    }
+
+    if (currentSetting.isNotEmpty && currentSetting[0].settingValue == "enabled") isReturnButtonEnabled = true;
+    notifyListeners();
+  }
+
+  addStoreToTracking() async {
+    // A method that allow us to set the store as default tracking app
+    List<Applications> storeApp  = [];
+
+    storeApp = await Applications.retrieveApplicationByName("Damolmo Store");
+
+    try {
+      TrackingUpdates.createTrackingUpdatesTable();
+      TrackingUpdates.insertUpdateIntoTable(
+        TrackingUpdates(appName: storeApp[0].appName, appVersion: storeApp[0].appVersion, appChangelog: "", appIcon: storeApp[0].appLogo));
+    } catch (e){
+      // Nothing to do
+    }
+
+  }
+
+  int getMenuEntry() => selectedEntry;
 
   void getCurrentSettings() async {
     // Check if old data still exists
@@ -106,6 +155,7 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
           apps.add(app);
       }
     }
+
     isCategorySelected = true;
     isCustomSearch = true;
     notifyListeners();
@@ -177,7 +227,7 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
   }
 
   navigateToAppPage(BuildContext context, Applications app) =>
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => AppScreenView(app: app, fontColor: fontColor, backgroundColor: backgroundColor, apps: apps,)));
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => AppScreenView(app: app, fontColor: fontColor, backgroundColor: backgroundColor, apps: apps, isReturnButtonEnabled : isReturnButtonEnabled, ogApps: ogApps, categories: categories,)));
 
   void compareSongDurations(Duration d, String durationType) async {
     // a method that allow us to compare durations and manage the sound process
@@ -190,20 +240,26 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
     } else {
       // We've the current song duration
       songPosition = "${d.inHours}:${d.inMinutes}:${d.inSeconds}";
+      print("$songPosition/$songDuration");
       notifyListeners();
 
       if (songPosition == songDuration){
-        stopSongServices();
+        rebootSong();
       }
     }
+  }
+
+  void rebootSong() async {
+    // Play song service again when finished
+    player.stop();
+    player.release();
+    playSong(); // Play a song
   }
 
   void stopSongServices() async {
     // A method that collects all functions on one place
     player.pause();
-    player.stop();
-    notifyListeners();
-    //playSong();
+    player.resume();
   }
 
   void playThemeOnLoop() async{

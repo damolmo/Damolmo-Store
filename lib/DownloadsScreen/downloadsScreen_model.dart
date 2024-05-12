@@ -8,15 +8,23 @@ class DownloadsScreenModel extends HomeScreenModel implements Initialisable{
   DownloadsScreenModel({
     required this.fontColor,
     required this.backgroundColor,
+    required this.selectedEntry,
+    required this.isReturnButtonEnabled,
     required this.apps,
+    required this.ogApps,
+    required this.categories, required super.isAppInit,
 });
 
   @override
+  final bool isReturnButtonEnabled;
+  int selectedEntry;
   final Color fontColor;
   final Color backgroundColor;
   List<PendingUpdates> pending = [];
   List<TrackingUpdates> tracking = [];
-  List<Applications> apps = [];
+  List<Categories> categories;
+  List<Applications> apps;
+  List<Applications> ogApps;
   int choosedAppIndex = 0;
 
   @override

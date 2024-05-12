@@ -4,16 +4,24 @@ import '../exports.dart';
 
 class DownloadsScreenView extends StackedView<DownloadsScreenModel>{
   @override
-  const DownloadsScreenView({
+  DownloadsScreenView({
     required this.fontColor,
     required this.backgroundColor,
     required this.apps,
+    required this.ogApps,
+    required this.categories,
+    required this.selectedEntry,
+    required this.isReturnButtonEnabled,
     super.key
 });
 
+  final bool isReturnButtonEnabled;
   final Color fontColor;
   final Color backgroundColor;
   final List<Applications> apps;
+  List<Applications> ogApps;
+  List<Categories> categories;
+  final int selectedEntry;
 
   @override
   Widget builder(
@@ -34,7 +42,16 @@ class DownloadsScreenView extends StackedView<DownloadsScreenModel>{
           StoreAppBar(viewModel: viewModel),
 
           // Pending List
+          if (!viewModel.isCategorySelected)
             PendingList(viewModel: viewModel),
+
+          // Category Apps List
+          if (viewModel.isCategorySelected)
+            CategoryAppsList(viewModel: viewModel),
+
+          // Return Button
+          if (viewModel.isReturnButtonEnabled)
+            OnDisplayReturnButton(viewModel: viewModel),
 
           // Nav Bar
           CustomizedNavBar(viewModel: viewModel),
@@ -46,7 +63,7 @@ class DownloadsScreenView extends StackedView<DownloadsScreenModel>{
   }
 
   @override
-  DownloadsScreenModel viewModelBuilder(BuildContext context) => DownloadsScreenModel(fontColor: fontColor, backgroundColor: backgroundColor, apps: apps);
+  DownloadsScreenModel viewModelBuilder(BuildContext context) => DownloadsScreenModel(fontColor: fontColor, backgroundColor: backgroundColor, apps: apps, selectedEntry: selectedEntry, isReturnButtonEnabled : isReturnButtonEnabled, ogApps: ogApps, categories: categories, isAppInit: false);
 
 
 

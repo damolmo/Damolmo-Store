@@ -33,6 +33,11 @@ class SettingsList extends StatelessWidget{
                 } else if (viewModel.settings[index].settingName == "Tracking Apps"){
                   viewModel.isTrackingListView = true;
                   viewModel.notifyListeners();
+                } else if (viewModel.settings[index].settingName == "About Damolmo Store") {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => AboutAppScreenView(fontColor: viewModel.fontColor, backgroundColor: viewModel.backgroundColor, isReturnButtonEnabled : viewModel.isReturnButtonEnabled )));
+                } else if (viewModel.settings[index].settingName == "Return Button"){
+                  viewModel.isReturnButtonWindows = true;
+                  viewModel.notifyListeners();
                 } else {
                   launchUrl(Uri.parse("https://github.com/damolmo/Damolmo-Store"));
                 }
@@ -53,7 +58,6 @@ class SettingsList extends StatelessWidget{
                   child: ListTile(
                     leading: Icon(IconData(viewModel.settings[index].settingIcon, fontFamily: 'MaterialIcons'), color: viewModel.fontColor,),
                     title: Text(viewModel.settings[index].settingName, style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.05),),
-                    trailing: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_forward_ios, color: viewModel.fontColor.withOpacity(0.6), size : 40), ),
                   ),
                 ),
             );

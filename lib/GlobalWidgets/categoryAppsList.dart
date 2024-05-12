@@ -81,6 +81,8 @@ class CategoryAppsList extends StatelessWidget{
                 itemBuilder: (context, index){
                 return InkWell(
                   onTap : (){
+                    viewModel.isCategorySelected = false;
+                    viewModel.notifyListeners();
                     viewModel.navigateToAppPage(context, viewModel.apps[index]);
                   },
                     child : Container(

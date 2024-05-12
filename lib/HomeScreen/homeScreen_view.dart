@@ -4,9 +4,11 @@ import '../exports.dart';
 
 class HomeScreenView extends StackedView<HomeScreenModel>{
   @override
-   HomeScreenView({
+  HomeScreenView({
+    required this.isAppInit,
     super.key});
 
+  bool isAppInit;
 
   @override
   Widget builder(
@@ -54,6 +56,10 @@ class HomeScreenView extends StackedView<HomeScreenModel>{
             if (viewModel.isCategorySelected)
               CategoryAppsList(viewModel: viewModel),
 
+            // Return Button
+            if (viewModel.isReturnButtonEnabled)
+              OnDisplayReturnButton(viewModel: viewModel),
+
             // Exit Dialog
             if (viewModel.showExitPopUp)
               LeaveScreen(viewModel: viewModel),
@@ -68,5 +74,5 @@ class HomeScreenView extends StackedView<HomeScreenModel>{
   }
 
   @override
-  HomeScreenModel viewModelBuilder(BuildContext context) => HomeScreenModel();
+  HomeScreenModel viewModelBuilder(BuildContext context) => HomeScreenModel(isAppInit: isAppInit);
 }

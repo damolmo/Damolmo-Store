@@ -16,7 +16,7 @@ class DamolmoStore extends StatelessWidget{
    SystemChrome.setEnabledSystemUIMode (SystemUiMode.manual, overlays: []);
    return MaterialApp(
      debugShowCheckedModeBanner: false,
-     home: getDeviceWidth(context) < 580 ?  HomeScreenView() : Container() ,
+     home: getDeviceWidth(context) < 580 ?  HomeScreenView(isAppInit: true,) : Container() ,
      routes: {
      },
    );

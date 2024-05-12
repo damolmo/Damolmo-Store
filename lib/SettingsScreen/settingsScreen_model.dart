@@ -12,22 +12,48 @@ class SettingsScreenModel extends HomeScreenModel implements Initialisable{
     required this.fontColor,
     required this.backgroundColor,
     required this.apps,
+    required this.ogApps,
+    required this.categories,
+    required this.selectedEntry,
+    required this.isReturnButtonEnabled, required super.isAppInit,
 });
 
+  int selectedEntry;
   final Color fontColor;
   final Color backgroundColor;
   List<Settings> settings = [];
-  final List<Applications> apps;
+  List<Applications> apps;
+  List<Categories> categories;
+  List<Applications> ogApps;
+  final bool isReturnButtonEnabled;
   List<TrackingUpdates> tracking = [];
   bool isThemeSelection = false;
   bool isTrackingListView = false;
+  bool isReturnButtonWindows = false;
   List<Themes> themes = [];
 
   @override
   void initialise(){
+    checkForNewSettings();
     getCurrentSettings();
     getCurrentTracking();
     getCurrentThemes();
+    print(ogApps);
+    print(apps);
+  }
+
+  void setDisplayButton(String value) async {
+    // Set on/off on display button
+    try {
+      Settings.updateExistingSetting(Settings(settingName: "Return Button", settingValue: value, settingIcon: Icons.gesture.codePoint));
+    } catch (e){
+      // Nothing to do
+    }
+  }
+
+  void checkForNewSettings() async {
+    // A method that checks new data
+    SettingsData.checkExistingSettings();
   }
 
   void getCurrentThemes() async {

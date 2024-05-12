@@ -83,23 +83,25 @@ class ThemeSelector extends StatelessWidget{
                       },
                       child : Container(
                         width: getDeviceWidth(context) * 0.5,
-                        height: getDeviceHeight(context) * 0.08,
+                        height: getDeviceHeight(context) * 0.1,
                         margin: EdgeInsets.only(
-                          top: getDeviceHeight(context) * 0.025,
-                          left: getDeviceWidth(context) * 0.025,
+                          top: getDeviceHeight(context) * 0.015,
+                          left: getDeviceWidth(context) * 0.05,
                             right: getDeviceWidth(context) * 0.05,
                         ),
                         child: Row(
                           children: [
                             // Color Icon
                             Container(
-                              width: getDeviceWidth(context) * 0.14,
+                              height : getDeviceHeight(context) * 0.06,
+                              width: getDeviceWidth(context) * 0.13,
                               margin: EdgeInsets.only(
-                                right: getDeviceWidth(context) * 0.06,
+                                left: getDeviceWidth(context) * 0.02,
+                                right: getDeviceWidth(context) * 0.03
                               ),
                               decoration: BoxDecoration(
                                   color:  Color(int.parse(viewModel.themes[index].themeBackgroundColor, radix : 16)),
-                                  borderRadius: BorderRadius.circular(360),
+                                  borderRadius: BorderRadius.circular(130),
                                   boxShadow: [BoxShadow(color: viewModel.fontColor.withOpacity(0.6), blurStyle: BlurStyle.normal, blurRadius: 10.0, spreadRadius: 3.0)]
                               ),
                             ),
@@ -107,6 +109,9 @@ class ThemeSelector extends StatelessWidget{
                             // Color Text
                             Container(
                               width: getDeviceWidth(context) * 0.3,
+                              margin: EdgeInsets.only(
+                                right: getDeviceWidth(context) * 0.02
+                              ),
                               child: Text(viewModel.themes[index].themeName, style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) * 0.05, fontWeight: FontWeight.bold),),
                             )
 

@@ -28,23 +28,28 @@ class CustomizedNavBar extends StatelessWidget{
       ),
       child : Row(
         children: [
+          const Spacer(),
+
           // Home Button
           InkWell(
             onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreenView()));
+              viewModel.stopSongServices();
+              viewModel.selectedEntry = 0;
+              viewModel.notifyListeners();
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreenView(isAppInit: false,)));
 
             },
             child : Container(
               width : getDeviceWidth(context) * 0.25,
               height: getDeviceHeight(context) * 0.1,
               margin: EdgeInsets.only(
-                left: getDeviceWidth(context) * 0.025,
                 right: getDeviceWidth(context) * 0.05
               ),
               child: Column(
                 children: [
+                  Spacer(),
                   // Route Icon
-                  const Icon(Icons.category_rounded, color: Colors.orange, size: 45,),
+                  Icon(Icons.category_rounded, color: Colors.orange, size: viewModel.getMenuEntry() == 0 ? 45 : 35,),
 
                   // Route Name
                   Row(
@@ -53,7 +58,9 @@ class CustomizedNavBar extends StatelessWidget{
                       Text("Categories", style: TextStyle(color: Colors.white, fontSize: getDeviceWidth(context) * 0.03, fontWeight: FontWeight.bold, shadows: const [Shadow(color: Colors.black, blurRadius: 24.0, offset: Offset.zero)]), textAlign: TextAlign.center,),
                       const Spacer(),
                     ],
-                  )
+                  ),
+                  Spacer(),
+
                 ],
               )
             ),
@@ -64,7 +71,10 @@ class CustomizedNavBar extends StatelessWidget{
           // Home Button
           InkWell(
             onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => DownloadsScreenView(fontColor: viewModel.fontColor, backgroundColor: viewModel.backgroundColor, apps: viewModel.apps,)));
+              viewModel.stopSongServices();
+              viewModel.selectedEntry = 1;
+              viewModel.notifyListeners();
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => DownloadsScreenView(fontColor: viewModel.fontColor, backgroundColor: viewModel.backgroundColor, apps: viewModel.apps, selectedEntry: viewModel.selectedEntry, isReturnButtonEnabled: viewModel.isReturnButtonEnabled, ogApps: viewModel.ogApps, categories: viewModel.categories,)));
             },
             child : Container(
                 width : getDeviceWidth(context) * 0.25,
@@ -74,8 +84,9 @@ class CustomizedNavBar extends StatelessWidget{
                 ),
                 child: Column(
                   children: [
+                    const Spacer(),
                     // Route Icon
-                    const Icon(Icons.download_rounded, color: Colors.lightBlueAccent, size: 45,),
+                    Icon(Icons.download_rounded, color: Colors.lightBlueAccent, size: viewModel.getMenuEntry() == 1 ? 45 : 35,),
 
                     // Route Name
                     Row(
@@ -84,7 +95,8 @@ class CustomizedNavBar extends StatelessWidget{
                         Text("Updates", style: TextStyle(color: Colors.white, fontSize: getDeviceWidth(context) * 0.03, fontWeight: FontWeight.bold, shadows: const [Shadow(color: Colors.black, blurRadius: 24.0, offset: Offset.zero)]), textAlign: TextAlign.center,),
                         const Spacer(),
                       ],
-                    )
+                    ),
+                    const Spacer(),
                   ],
                 )
             ),
@@ -94,18 +106,20 @@ class CustomizedNavBar extends StatelessWidget{
           // Home Button
           InkWell(
             onTap: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => SettingsScreenView(fontColor: viewModel.fontColor, backgroundColor: viewModel.backgroundColor, apps: viewModel.apps,)));
+              viewModel.stopSongServices();
+              viewModel.selectedEntry = 2;
+              viewModel.notifyListeners();
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => SettingsScreenView(fontColor: viewModel.fontColor, backgroundColor: viewModel.backgroundColor, apps: viewModel.apps, selectedEntry: viewModel.selectedEntry, isReturnButtonEnabled : viewModel.isReturnButtonEnabled, ogApps: viewModel.ogApps, categories: viewModel.categories,)));
             },
             child : Container(
                 width : getDeviceWidth(context) * 0.25,
                 height: getDeviceHeight(context) * 0.1,
-                margin: EdgeInsets.only(
-                    right: getDeviceWidth(context) * 0.025
-                ),
                 child: Column(
                   children: [
+                    const Spacer(),
+
                     // Route Icon
-                    const Icon(Icons.settings_rounded, color: Colors.lightGreen, size: 45,),
+                    Icon(Icons.settings_rounded, color: Colors.lightGreen, size: viewModel.getMenuEntry() == 2 ? 45 : 35,),
 
                     // Route Name
                     Row(
@@ -114,11 +128,13 @@ class CustomizedNavBar extends StatelessWidget{
                         Text("Settings", style: TextStyle(color: Colors.white, fontSize: getDeviceWidth(context) * 0.03, fontWeight: FontWeight.bold, shadows: const [Shadow(color: Colors.black, blurRadius: 24.0, offset: Offset.zero)]), textAlign: TextAlign.center,),
                         const Spacer(),
                       ],
-                    )
+                    ),
+                    const Spacer(),
                   ],
                 )
             ),
           ),
+          const Spacer(),
         ],
       )
     );

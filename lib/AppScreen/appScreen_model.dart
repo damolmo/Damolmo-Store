@@ -16,16 +16,22 @@ class AppScreenModel extends HomeScreenModel implements Initialisable{
   AppScreenModel({
     required this.app,
     required this.apps,
+    required this.ogApps,
+    required this.categories,
     required this.fontColor,
     required this.backgroundColor,
+    required this.isReturnButtonEnabled, required super.isAppInit,
 });
 
   @override
+  final bool isReturnButtonEnabled;
   final Color fontColor;
   final Color backgroundColor;
   final Applications app;
   @override
   final List<Applications> apps;
+  List<Applications> ogApps;
+  List<Categories> categories;
   List<Screens> appScreens = [];
   List<String> appDetailsValues = [];
   List<String> appDetailsStr = [];
