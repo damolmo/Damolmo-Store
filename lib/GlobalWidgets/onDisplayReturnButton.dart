@@ -32,6 +32,7 @@ class OnDisplayReturnButton extends StatelessWidget{
             // Exit app from Home screen to avoid the black screen issue
             SystemNavigator.pop();
           } else if (viewModel.isCategorySelected) {
+            viewModel.searchField.text = "";
             viewModel.isCategorySelected = false;
             viewModel.notifyListeners();
           } else {
