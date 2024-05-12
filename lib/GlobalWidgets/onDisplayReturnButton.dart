@@ -28,12 +28,15 @@ class OnDisplayReturnButton extends StatelessWidget{
       ),
       child: IconButton(
         onPressed : (){
-          if (viewModel.isHomeScreen){
+          if (viewModel.isHomeScreen && !viewModel.isCategorySelected){
             // Exit app from Home screen to avoid the black screen issue
             SystemNavigator.pop();
-          } else if (viewModel.isCategorySelected) {
+          } else if (viewModel.isCategorySelected || viewModel.isThemeSelection || viewModel.isTrackingListView || viewModel.isReturnButtonWindows) {
             viewModel.searchField.text = "";
             viewModel.isCategorySelected = false;
+            viewModel.isThemeSelection = false;
+            viewModel.isTrackingListView = false;
+            viewModel.isReturnButtonWindows = false;
             viewModel.notifyListeners();
           } else {
             Navigator.of(context).pop();

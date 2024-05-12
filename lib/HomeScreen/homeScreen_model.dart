@@ -37,6 +37,11 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
   bool isReturnButtonEnabled = false;
   bool isAppInit;
 
+  // Data to avoid app crash
+  bool isThemeSelection = false;
+  bool isTrackingListView = false;
+  bool isReturnButtonWindows = false;
+
 
   @override
   void initialise(){

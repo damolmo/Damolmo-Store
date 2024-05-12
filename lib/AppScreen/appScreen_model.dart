@@ -44,6 +44,11 @@ class AppScreenModel extends HomeScreenModel implements Initialisable{
   String downloadProgress = "";
   var dio = Dio();
 
+  // Data to avoid app crash
+  bool isThemeSelection = false;
+  bool isTrackingListView = false;
+  bool isReturnButtonWindows = false;
+
   @override
   void initialise() async  {
     getAppScreens();

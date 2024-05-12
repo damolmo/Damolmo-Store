@@ -44,6 +44,6 @@ class AboutAppScreenView extends StackedView<AboutAppScreenModel>{
   }
 
   @override
-  AboutAppScreenModel viewModelBuilder(BuildContext context) => AboutAppScreenModel(fontColor: fontColor, backgroundColor: backgroundColor, isReturnButtonEnabled : isReturnButtonEnabled);
+  AboutAppScreenModel viewModelBuilder(BuildContext context) => AboutAppScreenModel(fontColor: fontColor, backgroundColor: backgroundColor, isReturnButtonEnabled : isReturnButtonEnabled, isAppInit: false, isCategorySelected: false);
 
 }

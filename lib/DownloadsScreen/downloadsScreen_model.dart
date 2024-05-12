@@ -27,6 +27,11 @@ class DownloadsScreenModel extends HomeScreenModel implements Initialisable{
   List<Applications> ogApps;
   int choosedAppIndex = 0;
 
+  // Data to avoid app crash
+  bool isThemeSelection = false;
+  bool isTrackingListView = false;
+  bool isReturnButtonWindows = false;
+
   @override
   void initialise(){
     checkForUpdates(); // Get Latest Apps
