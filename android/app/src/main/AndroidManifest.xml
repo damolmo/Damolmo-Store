@@ -59,6 +59,30 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths"/>
         </provider>
+        <activity
+            android:name="com.damolmo.store.damolmo_store"
+            android:label="@string/title_gizmos"
+            android:exported="true"
+            tools:ignore="MissingClass">
+            <intent-filter android:label="@string/filter_view_http_gizmos">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data android:scheme="http"
+                    android:host="www.example.com"
+                    android:pathPrefix="/gizmos" />
+                <!-- note that the leading "/" is required for pathPrefix-->
+            </intent-filter>
+            <intent-filter android:label="@string/filter_view_example_gizmos">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "example://gizmos” -->
+                <data android:scheme="example"
+                    android:host="gizmos" />
+            </intent-filter>
+        </activity>
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility?hl=en and
