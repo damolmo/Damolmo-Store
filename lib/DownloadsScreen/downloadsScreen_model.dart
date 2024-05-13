@@ -67,7 +67,7 @@ class DownloadsScreenModel extends HomeScreenModel implements Initialisable{
       tempFile.deleteSync();
       DownloadsHistory.deleteSingleDownload(download);
       downloads.remove(download);
-      isDownloadsScreen = false;
+      choosedDownloadIndex = 999;
       notifyListeners();
     }
   }
