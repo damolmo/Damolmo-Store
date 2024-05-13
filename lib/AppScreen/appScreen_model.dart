@@ -3,6 +3,7 @@ import 'package:flutter_app_installer/flutter_app_installer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:quiver/async.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:stacked/stacked.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../exports.dart';
@@ -20,7 +21,7 @@ class AppScreenModel extends HomeScreenModel implements Initialisable{
     required this.categories,
     required this.fontColor,
     required this.backgroundColor,
-    required this.isReturnButtonEnabled, required super.isAppInit,
+    required this.isReturnButtonEnabled, required super.isAppInit, required super.uri, required super.context,
 });
 
   @override
@@ -53,6 +54,11 @@ class AppScreenModel extends HomeScreenModel implements Initialisable{
   void initialise() async  {
     getAppScreens();
     getAppDetails();
+  }
+
+  void shareUrl() async {
+    // A method that allow us to share an url using platform share dialog
+    Share.share("Echa un vistazo a ${app.appName} en android : ${app.androidShareUri} o en web : ${app.webShareUri}");
   }
 
   void addAppToDownloads() async {

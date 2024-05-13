@@ -12,9 +12,11 @@ class DownloadsScreenView extends StackedView<DownloadsScreenModel>{
     required this.categories,
     required this.selectedEntry,
     required this.isReturnButtonEnabled,
+    required this.uri,
     super.key
 });
 
+  final String uri;
   final bool isReturnButtonEnabled;
   final Color fontColor;
   final Color backgroundColor;
@@ -71,7 +73,7 @@ class DownloadsScreenView extends StackedView<DownloadsScreenModel>{
   }
 
   @override
-  DownloadsScreenModel viewModelBuilder(BuildContext context) => DownloadsScreenModel(fontColor: fontColor, backgroundColor: backgroundColor, apps: apps, selectedEntry: selectedEntry, isReturnButtonEnabled : isReturnButtonEnabled, ogApps: ogApps, categories: categories, isAppInit: false);
+  DownloadsScreenModel viewModelBuilder(BuildContext context) => DownloadsScreenModel(fontColor: fontColor, backgroundColor: backgroundColor, apps: apps, selectedEntry: selectedEntry, isReturnButtonEnabled : isReturnButtonEnabled, ogApps: ogApps, categories: categories, isAppInit: false, uri: uri, context: context);
 
 
 

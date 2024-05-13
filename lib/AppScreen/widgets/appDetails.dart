@@ -79,6 +79,21 @@ class AppDetails extends StatelessWidget{
             child: Row(
               children: [
 
+                Container(
+                  width: getDeviceWidth(context) * 0.15,
+                  height: getDeviceHeight(context) * 0.07,
+                  margin: EdgeInsets.only(
+                    left: getDeviceWidth(context) * 0.07,
+                    right: getDeviceWidth(context) * 0.07
+                  ),
+                  child: IconButton(
+                    onPressed : (){
+                      viewModel.shareUrl();
+                  },
+                    icon: Icon(Icons.share_rounded, color: viewModel.fontColor, size : 45,),
+                  ),
+                ),
+
                 if (viewModel.app.appApkUrl.isNotEmpty)
                 // Download Button
                 InkWell(

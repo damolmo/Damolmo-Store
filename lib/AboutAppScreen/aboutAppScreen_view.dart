@@ -9,9 +9,11 @@ class AboutAppScreenView extends StackedView<AboutAppScreenModel>{
     required this.fontColor,
     required this.backgroundColor,
     required this.isReturnButtonEnabled,
+    required this.uri,
     super.key,
 });
 
+  final String uri;
   final Color fontColor;
   final bool isReturnButtonEnabled;
   final Color backgroundColor;
@@ -44,6 +46,6 @@ class AboutAppScreenView extends StackedView<AboutAppScreenModel>{
   }
 
   @override
-  AboutAppScreenModel viewModelBuilder(BuildContext context) => AboutAppScreenModel(fontColor: fontColor, backgroundColor: backgroundColor, isReturnButtonEnabled : isReturnButtonEnabled, isAppInit: false, isCategorySelected: false);
+  AboutAppScreenModel viewModelBuilder(BuildContext context) => AboutAppScreenModel(fontColor: fontColor, backgroundColor: backgroundColor, isReturnButtonEnabled : isReturnButtonEnabled, isAppInit: false, isCategorySelected: false, uri: uri, context: context);
 
 }

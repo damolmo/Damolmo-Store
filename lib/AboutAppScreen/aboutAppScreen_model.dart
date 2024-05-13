@@ -11,7 +11,7 @@ class AboutAppScreenModel extends HomeScreenModel implements Initialisable{
     required this.backgroundColor,
     required this.isReturnButtonEnabled,
     required this.isAppInit,
-    required this.isCategorySelected,
+    required this.isCategorySelected, required super.uri, required super.context
   }) : super(isAppInit: false);
   
   final bool isCategorySelected;

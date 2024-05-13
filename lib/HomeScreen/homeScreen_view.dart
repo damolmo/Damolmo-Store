@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../exports.dart';
+import 'dart:core';
 
 class HomeScreenView extends StackedView<HomeScreenModel>{
   @override
   HomeScreenView({
     required this.isAppInit,
+    required this.uri,
     super.key});
 
+  final String uri;
   bool isAppInit;
 
   @override
@@ -74,5 +77,5 @@ class HomeScreenView extends StackedView<HomeScreenModel>{
   }
 
   @override
-  HomeScreenModel viewModelBuilder(BuildContext context) => HomeScreenModel(isAppInit: isAppInit);
+  HomeScreenModel viewModelBuilder(BuildContext context) => HomeScreenModel(isAppInit: isAppInit, uri: uri, context: context);
 }

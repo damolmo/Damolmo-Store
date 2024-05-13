@@ -13,8 +13,10 @@ class AppScreenView extends StackedView<AppScreenModel>{
     required this.fontColor,
     required this.backgroundColor,
     required this.isReturnButtonEnabled,
+    required this.uri,
     super.key});
 
+  final String uri;
   final Applications app;
   final List<Applications> apps;
   List<Categories> categories;
@@ -93,5 +95,5 @@ class AppScreenView extends StackedView<AppScreenModel>{
   }
 
   @override
-  AppScreenModel viewModelBuilder(BuildContext context) => AppScreenModel(app: app, fontColor: fontColor, backgroundColor: backgroundColor, apps: apps, isReturnButtonEnabled : isReturnButtonEnabled, ogApps: ogApps, categories: categories, isAppInit: false);
+  AppScreenModel viewModelBuilder(BuildContext context) => AppScreenModel(app: app, fontColor: fontColor, backgroundColor: backgroundColor, apps: apps, isReturnButtonEnabled : isReturnButtonEnabled, ogApps: ogApps, categories: categories, isAppInit: false, uri: uri, context: context);
 }

@@ -13,8 +13,12 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
   @override
   HomeScreenModel({
     required this.isAppInit,
+    required this.uri,
+    required this.context,
 });
 
+  BuildContext context;
+  final String uri;
   Color fontColor = Colors.black;
   Color backgroundColor = Colors.white;
   bool isNewSong = true;
@@ -55,15 +59,36 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
     isHomeScreen = true;
     notifyListeners();
 
+
     getApplications(); // Get Apps
     getCategories(); // Get Categories
     getRandomBanner(); // Get Random Banner
     getCurrentSettings(); // Checks old data
     addStoreToTracking(); // Auto updates for store
     getReturnButtonState(); // Get gestures config
+    navigateToUri(); // Navigate to external app page
   }
 
   List<Applications> getApps() => apps;
+
+  void navigateToUri() async {
+    // A method that checks if uri isn't empty
+    if (uri.isNotEmpty){
+      // Full path means user opened a url on web or mobile app
+      checkAppName();
+    }
+  }
+
+  void checkAppName() async {
+    // Checks uri coincidence, compares with all apps
+
+    for (Applications app in ogApps){
+      if (app.webShareUri == uri || app.androidShareUri == uri){
+        // App Found, navigate to view
+        navigateToAppPage(context, app);
+      }
+    }
+  }
 
   getReturnButtonState() async {
     // A method that allow us to retrieve current gestures config
@@ -235,7 +260,7 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
   }
 
   navigateToAppPage(BuildContext context, Applications app) =>
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => AppScreenView(app: app, fontColor: fontColor, backgroundColor: backgroundColor, apps: apps, isReturnButtonEnabled : isReturnButtonEnabled, ogApps: ogApps, categories: categories,)));
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => AppScreenView(app: app, fontColor: fontColor, backgroundColor: backgroundColor, apps: apps, isReturnButtonEnabled : isReturnButtonEnabled, ogApps: ogApps, categories: categories, uri: uri,)));
 
   void compareSongDurations(Duration d, String durationType) async {
     // a method that allow us to compare durations and manage the sound process

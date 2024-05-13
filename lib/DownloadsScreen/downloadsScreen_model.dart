@@ -16,7 +16,7 @@ class DownloadsScreenModel extends HomeScreenModel implements Initialisable{
     required this.isReturnButtonEnabled,
     required this.apps,
     required this.ogApps,
-    required this.categories, required super.isAppInit,
+    required this.categories, required super.isAppInit, required super.uri, required super.context,
 });
 
   @override

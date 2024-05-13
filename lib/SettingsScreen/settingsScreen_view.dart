@@ -12,8 +12,10 @@ class SettingsScreenView extends StackedView<SettingsScreenModel>{
     required this.backgroundColor,
     required this.selectedEntry,
     required this.isReturnButtonEnabled,
+    required this.uri,
     super.key});
 
+  final String uri;
   List<Applications> apps;
   List<Applications> ogApps;
   List<Categories> categories;
@@ -81,5 +83,5 @@ class SettingsScreenView extends StackedView<SettingsScreenModel>{
   }
 
   @override
-  SettingsScreenModel viewModelBuilder(BuildContext context) => SettingsScreenModel(fontColor: fontColor, backgroundColor: backgroundColor, apps: apps, selectedEntry: selectedEntry, isReturnButtonEnabled : isReturnButtonEnabled, ogApps: ogApps, categories: categories, isAppInit: false);
+  SettingsScreenModel viewModelBuilder(BuildContext context) => SettingsScreenModel(fontColor: fontColor, backgroundColor: backgroundColor, apps: apps, selectedEntry: selectedEntry, isReturnButtonEnabled : isReturnButtonEnabled, ogApps: ogApps, categories: categories, isAppInit: false, uri: uri, context: context);
 }

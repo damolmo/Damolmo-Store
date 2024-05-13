@@ -34,7 +34,7 @@ class SettingsList extends StatelessWidget{
                   viewModel.isTrackingListView = true;
                   viewModel.notifyListeners();
                 } else if (viewModel.settings[index].settingName == "About Damolmo Store") {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => AboutAppScreenView(fontColor: viewModel.fontColor, backgroundColor: viewModel.backgroundColor, isReturnButtonEnabled : viewModel.isReturnButtonEnabled )));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => AboutAppScreenView(fontColor: viewModel.fontColor, backgroundColor: viewModel.backgroundColor, isReturnButtonEnabled : viewModel.isReturnButtonEnabled, uri: viewModel.uri, )));
                 } else if (viewModel.settings[index].settingName == "Return Button"){
                   viewModel.isReturnButtonWindows = true;
                   viewModel.notifyListeners();

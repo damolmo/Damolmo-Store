@@ -36,7 +36,7 @@ class CustomizedNavBar extends StatelessWidget{
               viewModel.stopSongServices();
               viewModel.selectedEntry = 0;
               viewModel.notifyListeners();
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreenView(isAppInit: false,)));
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreenView(isAppInit: false, uri: viewModel.uri,)));
 
             },
             child : Container(
@@ -74,7 +74,7 @@ class CustomizedNavBar extends StatelessWidget{
               viewModel.stopSongServices();
               viewModel.selectedEntry = 1;
               viewModel.notifyListeners();
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => DownloadsScreenView(fontColor: viewModel.fontColor, backgroundColor: viewModel.backgroundColor, apps: viewModel.apps, selectedEntry: viewModel.selectedEntry, isReturnButtonEnabled: viewModel.isReturnButtonEnabled, ogApps: viewModel.ogApps, categories: viewModel.categories,)));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => DownloadsScreenView(fontColor: viewModel.fontColor, backgroundColor: viewModel.backgroundColor, apps: viewModel.apps, selectedEntry: viewModel.selectedEntry, isReturnButtonEnabled: viewModel.isReturnButtonEnabled, ogApps: viewModel.ogApps, categories: viewModel.categories, uri: viewModel.uri,)));
             },
             child : Container(
                 width : getDeviceWidth(context) * 0.25,
@@ -109,7 +109,7 @@ class CustomizedNavBar extends StatelessWidget{
               viewModel.stopSongServices();
               viewModel.selectedEntry = 2;
               viewModel.notifyListeners();
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => SettingsScreenView(fontColor: viewModel.fontColor, backgroundColor: viewModel.backgroundColor, apps: viewModel.apps, selectedEntry: viewModel.selectedEntry, isReturnButtonEnabled : viewModel.isReturnButtonEnabled, ogApps: viewModel.ogApps, categories: viewModel.categories,)));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => SettingsScreenView(fontColor: viewModel.fontColor, backgroundColor: viewModel.backgroundColor, apps: viewModel.apps, selectedEntry: viewModel.selectedEntry, isReturnButtonEnabled : viewModel.isReturnButtonEnabled, ogApps: viewModel.ogApps, categories: viewModel.categories, uri: viewModel.uri,)));
             },
             child : Container(
                 width : getDeviceWidth(context) * 0.25,

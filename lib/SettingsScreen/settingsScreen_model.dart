@@ -15,7 +15,7 @@ class SettingsScreenModel extends HomeScreenModel implements Initialisable{
     required this.ogApps,
     required this.categories,
     required this.selectedEntry,
-    required this.isReturnButtonEnabled, required super.isAppInit,
+    required this.isReturnButtonEnabled, required super.isAppInit, required super.uri, required super.context
 });
 
   int selectedEntry;

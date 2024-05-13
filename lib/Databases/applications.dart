@@ -18,6 +18,8 @@ class Applications {
     required this.appCategory,
     required this.appWebUrl,
     required this.appApkUrl,
+    required this.webShareUri,
+    required this.androidShareUri,
 });
 
   final String appName;
@@ -33,6 +35,8 @@ class Applications {
   final String appCategory;
   final String appWebUrl;
   final String appApkUrl;
+  final String webShareUri;
+  final String androidShareUri;
 
   static const applicationsTable = """
     CREATE TABLE IF NOT EXISTS applications(
@@ -49,6 +53,8 @@ class Applications {
       appCategory TEXT,
       appWebUrl TEXT,
       appApkUrl TEXT,
+      webShareUri TEXT,
+      androidShareUri TEXT,
       FOREIGN KEY(appCategory) REFERENCES categories(categoryName)
     );
   """;
@@ -66,7 +72,9 @@ class Applications {
     "hasWebSupport" : hasWebSupport,
     "appCategory" : appCategory,
     "appWebUrl" : appWebUrl,
-    "appApkUrl" : appApkUrl
+    "appApkUrl" : appApkUrl,
+    "webShareUri" : webShareUri,
+    "androidShareUri" : androidShareUri
   };
 
   factory Applications.fromMap(Map<String,dynamic> map) =>
@@ -83,7 +91,10 @@ class Applications {
         hasWebSupport: map["appMinSDK"],
         appCategory: map["appCategory"],
         appWebUrl: map["appWebUrl"],
-        appApkUrl: map["appApkUrl"]);
+        appApkUrl: map["appApkUrl"],
+        androidShareUri: map["androidShareUri"],
+        webShareUri: map["webShareUri"]
+    );
 
   static createApplicationsTable() async {
     // A static method that allow us to create the applications table
