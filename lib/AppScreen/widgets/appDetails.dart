@@ -70,10 +70,9 @@ class AppDetails extends StatelessWidget{
 
           // App Download/Open Buttons
           Container(
-            width: getDeviceWidth(context) * 0.7,
+            width: getDeviceWidth(context) * 0.99,
             height: getDeviceHeight(context) * 0.07,
             margin: EdgeInsets.only(
-              left: getDeviceWidth(context) * 0.3,
               top: getDeviceHeight(context) * 0.12
             ),
             child: Row(
@@ -86,11 +85,16 @@ class AppDetails extends StatelessWidget{
                     left: getDeviceWidth(context) * 0.07,
                     right: getDeviceWidth(context) * 0.07
                   ),
+                  decoration: BoxDecoration(
+                    color: viewModel.backgroundColor,
+                    borderRadius : BorderRadius.circular(12),
+                    boxShadow : [BoxShadow(color: viewModel.fontColor.withOpacity(0.6),  blurRadius: 6.0, spreadRadius: 2.0, blurStyle: BlurStyle.normal)]
+                  ),
                   child: IconButton(
                     onPressed : (){
                       viewModel.shareUrl();
                   },
-                    icon: Icon(Icons.share_rounded, color: viewModel.fontColor, size : 45,),
+                    icon: Icon(Icons.share_rounded, color: viewModel.fontColor, size : 30,),
                   ),
                 ),
 
