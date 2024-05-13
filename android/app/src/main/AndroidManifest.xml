@@ -37,7 +37,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https" android:host="www.damolmo.xyz" android:pathPrefix="/" />
+                <data android:scheme="https" android:host="damolmo.xyz" android:pathPrefix="/" />
             </intent-filter>
 
             <!-- Deep Link sample -->

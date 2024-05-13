@@ -1,9 +1,0 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "com.damolmo.store.damolmo_store",
-    "sha256_cert_fingerprints":
-    ["BD:BD:4F:88:A8:2A:70:39:40:17:31:CC:28:A7:00:EA:55:E8:96:37:B7:32:D6:00:49:4A:77:83:50:F8:02:11"]
-  }
-}]

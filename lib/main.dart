@@ -5,25 +5,18 @@ import 'exports.dart';
 import 'package:app_links/app_links.dart';
 
 void main(){
-  final _appLinks = AppLinks();
-  _appLinks.uriLinkStream.listen((uri) {
-    // Listen to user uri
-    if (uri.path.isNotEmpty){
-      runApp(DamolmoStore(uri: uri.path,));
-    }
-  });
-  runApp(const DamolmoStore(uri: "",));
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(DamolmoStore());
 
 }
 
 class DamolmoStore extends StatelessWidget{
   @override
-  const DamolmoStore({
-    required this.uri,
+   DamolmoStore({
     super.key
   });
 
-  final String uri;
+  String url =  "";
 
  @override
  Widget build(BuildContext context){
@@ -31,9 +24,10 @@ class DamolmoStore extends StatelessWidget{
      DeviceOrientation.portraitUp,
    ]);
    SystemChrome.setEnabledSystemUIMode (SystemUiMode.manual, overlays: []);
+
    return MaterialApp(
      debugShowCheckedModeBanner: false,
-     home: getDeviceWidth(context) < 580 ?  HomeScreenView(isAppInit: true, uri: uri,) : Container() ,
+     home: getDeviceWidth(context) < 580 ?  HomeScreenView(isAppInit: true, uri: url,) : Container() ,
      routes: {
      },
    );

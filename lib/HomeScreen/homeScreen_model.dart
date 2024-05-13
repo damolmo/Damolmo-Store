@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:app_links/app_links.dart';
 import 'package:damolmo_store/Data/themesData.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +17,9 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
     required this.uri,
     required this.context,
 });
-
+  final _appLinks = AppLinks();
   BuildContext context;
-  final String uri;
+  String uri;
   Color fontColor = Colors.black;
   Color backgroundColor = Colors.white;
   bool isNewSong = true;
@@ -73,17 +74,30 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
 
   void navigateToUri() async {
     // A method that checks if uri isn't empty
-    if (uri.isNotEmpty){
-      // Full path means user opened a url on web or mobile app
-      checkAppName();
-    }
+
+    _appLinks.uriLinkStream.listen((url) {
+      print("URIII : ${url.toString()}");
+      // Listen to user uri
+      uri = url.toString();
+      notifyListeners();
+
+      if (uri.isNotEmpty){
+        // Full path means user opened a url on web or mobile app
+        checkAppName();
+      }
+    });
+
+
   }
 
   void checkAppName() async {
     // Checks uri coincidence, compares with all apps
 
+    print(uri);
+
     for (Applications app in ogApps){
       if (app.webShareUri == uri || app.androidShareUri == uri){
+        print("app : ${app.appName}");
         // App Found, navigate to view
         navigateToAppPage(context, app);
       }
