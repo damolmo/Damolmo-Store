@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:flutter_app_installer/flutter_app_installer.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:stacked/stacked.dart';
 import '../exports.dart';
@@ -25,7 +29,11 @@ class DownloadsScreenModel extends HomeScreenModel implements Initialisable{
   List<Categories> categories;
   List<Applications> apps;
   List<Applications> ogApps;
+  List<DownloadsHistory> downloads = [];
   int choosedAppIndex = 0;
+  bool isDownloadDetails = false;
+  bool isDownloadsScreen = false;
+  int choosedDownloadIndex = 0;
 
   // Data to avoid app crash
   bool isThemeSelection = false;
@@ -37,6 +45,43 @@ class DownloadsScreenModel extends HomeScreenModel implements Initialisable{
     checkForUpdates(); // Get Latest Apps
     getTrackingData();
     notifyListeners();
+    getCurrentDownloads();
+  }
+
+  installUserFile(DownloadsHistory download) async {
+    // A method that installs a file
+    final FlutterAppInstaller flutterAppInstaller = FlutterAppInstaller();
+    flutterAppInstaller.installApk(
+      filePath: download.downloadPath,
+    );
+  }
+
+
+  deleteUserFile(DownloadsHistory download) async {
+    // A method that deletes an existing file
+
+    File tempFile =  File(download.downloadPath);
+
+    if (tempFile.existsSync()){
+      // File exists proceed to delete it
+      tempFile.deleteSync();
+      DownloadsHistory.deleteSingleDownload(download);
+      downloads.remove(download);
+      notifyListeners();
+    }
+  }
+
+  getCurrentDownloads() async {
+    // Return latest downloads
+
+    try {
+      downloads = await DownloadsHistory.retrieveCurrentDownloads();
+      notifyListeners();
+    } catch (e){
+      // Nothing to do, empty list :)
+    }
+
+    print(downloads);
   }
 
   getApp(String appName, BuildContext context) async {

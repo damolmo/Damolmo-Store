@@ -248,7 +248,6 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
     } else {
       // We've the current song duration
       songPosition = "${d.inHours}:${d.inMinutes}:${d.inSeconds}";
-      print("$songPosition/$songDuration");
       notifyListeners();
 
       if (songPosition == songDuration){

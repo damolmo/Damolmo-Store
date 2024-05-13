@@ -14,12 +14,12 @@ class PendingList extends StatelessWidget{
   Widget build(BuildContext context){
     return Container(
       width: getDeviceWidth(context) * 0.95,
-      height: getDeviceHeight(context) * 0.7,
+      height: getDeviceHeight(context) * 0.6,
       margin: EdgeInsets.only(
         left: getDeviceWidth(context) * 0.025,
         right: getDeviceWidth(context) * 0.025,
-        top: getDeviceHeight(context) * 0.15,
-        bottom: getDeviceHeight(context) * 0.15
+        top: viewModel.pending.isEmpty ?  getDeviceHeight(context) *  0.35 : getDeviceHeight(context) * 0.27,
+        bottom: getDeviceHeight(context) * 0.1
       ),
       child: viewModel.pending.isNotEmpty ? ListView.builder(
           itemCount: viewModel.pending.length,

@@ -20,7 +20,7 @@ class AboutAppScreenModel extends HomeScreenModel implements Initialisable{
   final Color fontColor;
   final Color backgroundColor;
   List<String> aboutTitleString = ["Damolmo's Store version", "Current Device Time", "Current Running OS"];
-  List<String> aboutSubtitleString = ["v1.2.3+6", "${DateTime.now().year}/${DateTime.now().month}/${DateTime.now().day} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}", kIsWeb ? "Web Browser" : "Android" ];
+  List<String> aboutSubtitleString = ["v1.2.4+7", "${DateTime.now().year}/${DateTime.now().month}/${DateTime.now().day} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}", kIsWeb ? "Web Browser" : "Android" ];
   List<IconData> aboutIcons = [Icons.info, Icons.access_time_rounded, !kIsWeb? Icons.android_rounded : Icons.laptop_rounded ];
 
 

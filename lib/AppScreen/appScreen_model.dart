@@ -55,6 +55,23 @@ class AppScreenModel extends HomeScreenModel implements Initialisable{
     getAppDetails();
   }
 
+  void addAppToDownloads() async {
+
+    try {
+      DownloadsHistory.createDownloadsTable();
+      DownloadsHistory.insertDownloadIntoTable(
+        DownloadsHistory(
+            downloadName: app.appName,
+            downloadIcon: app.appLogo,
+            downloadPath: downloadPath,
+            downloadDate: "${DateTime.now().year}_${DateTime.now().month}_${DateTime.now().day} ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}")
+      );
+    } catch (e){
+     // Nothing to do
+    }
+
+  }
+
   void getAppScreens() async {
     // A method that returns screens for the user submitted app
     try {
@@ -144,6 +161,7 @@ class AppScreenModel extends HomeScreenModel implements Initialisable{
     listener.onData((data) {
       if (File(downloadPath).existsSync() && downloadPath.isNotEmpty && downloadProgress == "100%"){
         downloadFileExists = true;
+        addAppToDownloads();
         notifyListeners();
         listener.pause();
       }
