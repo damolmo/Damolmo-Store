@@ -67,6 +67,7 @@ class DownloadsScreenModel extends HomeScreenModel implements Initialisable{
       tempFile.deleteSync();
       DownloadsHistory.deleteSingleDownload(download);
       downloads.remove(download);
+      isDownloadsScreen = false;
       notifyListeners();
     }
   }
@@ -76,6 +77,7 @@ class DownloadsScreenModel extends HomeScreenModel implements Initialisable{
 
     try {
       downloads = await DownloadsHistory.retrieveCurrentDownloads();
+      downloads = downloads.reversed.toList();
       notifyListeners();
     } catch (e){
       // Nothing to do, empty list :)

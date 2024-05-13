@@ -42,6 +42,7 @@ class DownloadsScreenView extends StackedView<DownloadsScreenModel>{
           StoreAppBar(viewModel: viewModel),
 
           // Switch Button
+          if (!viewModel.isCategorySelected)
           SwitchButtons(viewModel: viewModel),
 
           // Pending List
@@ -53,7 +54,7 @@ class DownloadsScreenView extends StackedView<DownloadsScreenModel>{
             CategoryAppsList(viewModel: viewModel),
 
           // Downloads List
-          if (viewModel.isDownloadsScreen)
+          if (viewModel.isDownloadsScreen && !viewModel.isCategorySelected)
             DownloadsList(viewModel: viewModel),
 
           // Return Button
