@@ -34,12 +34,12 @@ class CategoryApps extends StatelessWidget{
               },
                 child : Container(
                   width: getDeviceWidth(context) > 580 ?  getDeviceWidth(context) * 0.3 : getDeviceWidth(context) * 0.75,
-                  height: getDeviceHeight(context) * 0.15,
+                  height: getDeviceWidth(context) > 580 ? getDeviceHeight(context) * 0.15 : getDeviceHeight(context) * 0.1,
                   margin: EdgeInsets.only(
                     left: getDeviceWidth(context) * 0.025,
                     right: getDeviceWidth(context) * 0.025,
                     top: getDeviceHeight(context) * 0.03,
-                    bottom: getDeviceHeight(context) * 0.02
+                    bottom: getDeviceWidth(context) > 580 ? getDeviceHeight(context) * 0.02 : 0.0
                   ),
                   decoration: BoxDecoration(
                     boxShadow: [BoxShadow(color: viewModel.fontColor.withOpacity(0.6), blurRadius: 10.0, blurStyle: BlurStyle.normal, spreadRadius: 3.0)],
