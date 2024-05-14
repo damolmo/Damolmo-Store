@@ -50,6 +50,9 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
 
   @override
   void initialise(){
+    getApplications(); // Get Apps
+    navigateToUri(); // Navigate to external app page
+
     if (isAppInit){
       playSong(); // Play a song
       playThemeOnLoop(); // Start loop
@@ -61,13 +64,11 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
     notifyListeners();
 
 
-    getApplications(); // Get Apps
     getCategories(); // Get Categories
     getRandomBanner(); // Get Random Banner
     getCurrentSettings(); // Checks old data
     addStoreToTracking(); // Auto updates for store
     getReturnButtonState(); // Get gestures config
-    navigateToUri(); // Navigate to external app page
   }
 
   List<Applications> getApps() => apps;
@@ -76,18 +77,11 @@ class HomeScreenModel extends BaseViewModel implements Initialisable{
     // A method that checks if uri isn't empty
 
     _appLinks.uriLinkStream.listen((url) {
-      print("URIII : ${url.toString()}");
       // Listen to user uri
       uri = url.toString();
       notifyListeners();
-
-      if (uri.isNotEmpty){
-        // Full path means user opened a url on web or mobile app
-        checkAppName();
-      }
+      checkAppName();
     });
-
-
   }
 
   void checkAppName() async {

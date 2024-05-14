@@ -58,7 +58,7 @@ class AppScreenModel extends HomeScreenModel implements Initialisable{
 
   void shareUrl() async {
     // A method that allow us to share an url using platform share dialog
-    Share.share("Echa un vistazo a ${app.appName} en android : ${app.androidShareUri} o en web : ${app.webShareUri}");
+    Share.share("Echa un vistazo a ${app.appName} en ${app.webShareUri}");
   }
 
   void addAppToDownloads() async {
