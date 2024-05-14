@@ -13,13 +13,13 @@ class SuggestedAppsBanner extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return  Container(
-      width: getDeviceWidth(context) * 0.9,
-      height: getDeviceHeight(context) * 0.25,
+      width: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.5 : getDeviceWidth(context) * 0.9,
+      height: getDeviceWidth(context) > 580 ?  getDeviceHeight(context) * 0.35 : getDeviceHeight(context) * 0.25,
       margin : EdgeInsets.only(
         top: getDeviceHeight(context) * 0.15,
-        bottom: getDeviceHeight(context) * 0.65,
-        left: getDeviceWidth(context) * 0.05,
-        right: getDeviceWidth(context) * 0.05
+        bottom: getDeviceWidth(context) > 580 ?  getDeviceHeight(context) * 0.5 : getDeviceHeight(context) * 0.65,
+        left: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.25 : getDeviceWidth(context) * 0.05,
+        right: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.25 : getDeviceWidth(context) * 0.05
       ),
           child: InkWell(
             onTap :(){

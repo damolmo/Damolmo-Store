@@ -13,12 +13,12 @@ class PendingList extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Container(
-      width: getDeviceWidth(context) * 0.95,
+      width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.55 : getDeviceWidth(context) * 0.95,
       height: getDeviceHeight(context) * 0.6,
       margin: EdgeInsets.only(
-        left: getDeviceWidth(context) * 0.025,
-        right: getDeviceWidth(context) * 0.025,
-        top: viewModel.pending.isEmpty ?  getDeviceHeight(context) *  0.35 : getDeviceHeight(context) * 0.27,
+        left: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.225 : getDeviceWidth(context) * 0.025,
+        right: getDeviceWidth(context) > 580 ? getDeviceWidth(context) *  0.225 : getDeviceWidth(context) * 0.025,
+        top: viewModel.pending.isEmpty ?  getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.15 : getDeviceHeight(context) *  0.35 : getDeviceHeight(context) * 0.27,
         bottom: getDeviceHeight(context) * 0.1
       ),
       child: viewModel.pending.isNotEmpty ? ListView.builder(
@@ -29,11 +29,11 @@ class PendingList extends StatelessWidget{
                viewModel.navigateToAppPage(context, viewModel.getApp(viewModel.pending[index].appName, context));
               },
                 child : Container(
-                  width: getDeviceWidth(context) * 0.9,
+                  width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.5 : getDeviceWidth(context) * 0.9,
                   height: getDeviceHeight(context) * 0.12,
                   margin: EdgeInsets.only(
-                    left: getDeviceWidth(context) * 0.025,
-                    right: getDeviceWidth(context) * 0.025,
+                    left: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.225 : getDeviceWidth(context) * 0.025,
+                    right: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.225 : getDeviceWidth(context) * 0.025,
                     top: getDeviceHeight(context) * 0.03
                   ),
                   decoration: BoxDecoration(
@@ -43,14 +43,14 @@ class PendingList extends StatelessWidget{
                   ),
                   child: ListTile(
                     leading: Image.asset(viewModel.pending[index].appIcon),
-                    title: Text(viewModel.pending[index].appName, style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) * 0.04, fontWeight: FontWeight.bold),) ,
-                    subtitle: Text(viewModel.pending[index].appVersion, style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) * 0.035)),
+                    title: Text(viewModel.pending[index].appName, style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.02 : getDeviceWidth(context) * 0.04, fontWeight: FontWeight.bold),) ,
+                    subtitle: Text(viewModel.pending[index].appVersion, style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.017 : getDeviceWidth(context) * 0.035)),
                     trailing: IconButton(onPressed : (){ viewModel.getApp(viewModel.pending[index].appName, context); },icon: Icon(Icons.arrow_forward_ios_rounded, color: viewModel.fontColor,),),
                   ),
                 ),
             );
           }
-      ) :  Text("\n\nNo Updates available!\nCheck Again Later :D", style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.06), textAlign: TextAlign.center,),
+      ) :  Text("\n\nNo Updates available!\nCheck Again Later :D", style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.03 : getDeviceWidth(context) * 0.06), textAlign: TextAlign.center,),
     );
   }
 

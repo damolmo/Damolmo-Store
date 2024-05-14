@@ -49,13 +49,13 @@ class CustomizedNavBar extends StatelessWidget{
                 children: [
                   Spacer(),
                   // Route Icon
-                  Icon(Icons.category_rounded, color: Colors.orange, size: viewModel.getMenuEntry() == 0 ? 45 : 35,),
+                  Icon(Icons.category_rounded, color: Colors.orange, size: viewModel.getMenuEntry() == 0 ? getDeviceWidth(context) > 580 ? 30 : 45 :  getDeviceWidth(context) > 580 ? 25 : 35,),
 
                   // Route Name
                   Row(
                     children: [
                       const Spacer(),
-                      Text("Categories", style: TextStyle(color: Colors.white, fontSize: getDeviceWidth(context) * 0.03, fontWeight: FontWeight.bold, shadows: const [Shadow(color: Colors.black, blurRadius: 24.0, offset: Offset.zero)]), textAlign: TextAlign.center,),
+                      Text("Categories", style: TextStyle(color: Colors.white, fontSize: getDeviceWidth(context) > 580 ?  getDeviceWidth(context) * 0.02 : getDeviceWidth(context) * 0.03, fontWeight: FontWeight.bold, shadows: const [Shadow(color: Colors.black, blurRadius: 24.0, offset: Offset.zero)]), textAlign: TextAlign.center,),
                       const Spacer(),
                     ],
                   ),
@@ -86,13 +86,13 @@ class CustomizedNavBar extends StatelessWidget{
                   children: [
                     const Spacer(),
                     // Route Icon
-                    Icon(Icons.download_rounded, color: Colors.lightBlueAccent, size: viewModel.getMenuEntry() == 1 ? 45 : 35,),
+                    Icon(Icons.download_rounded, color: Colors.lightBlueAccent, size: viewModel.getMenuEntry() == 1 ? getDeviceWidth(context) > 580 ? 30 : 45 :  getDeviceWidth(context) > 580 ? 25 : 35,),
 
                     // Route Name
                     Row(
                       children: [
                         const Spacer(),
-                        Text("Updates", style: TextStyle(color: Colors.white, fontSize: getDeviceWidth(context) * 0.03, fontWeight: FontWeight.bold, shadows: const [Shadow(color: Colors.black, blurRadius: 24.0, offset: Offset.zero)]), textAlign: TextAlign.center,),
+                        Text("Updates", style: TextStyle(color: Colors.white, fontSize: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.02 : getDeviceWidth(context) * 0.03, fontWeight: FontWeight.bold, shadows: const [Shadow(color: Colors.black, blurRadius: 24.0, offset: Offset.zero)]), textAlign: TextAlign.center,),
                         const Spacer(),
                       ],
                     ),
@@ -119,13 +119,13 @@ class CustomizedNavBar extends StatelessWidget{
                     const Spacer(),
 
                     // Route Icon
-                    Icon(Icons.settings_rounded, color: Colors.lightGreen, size: viewModel.getMenuEntry() == 2 ? 45 : 35,),
+                    Icon(Icons.settings_rounded, color: Colors.lightGreen, size: viewModel.getMenuEntry() == 2 ? getDeviceWidth(context) > 580 ? 30 : 45 :  getDeviceWidth(context) > 580 ? 25 : 35,),
 
                     // Route Name
                     Row(
                       children: [
                         const Spacer(),
-                        Text("Settings", style: TextStyle(color: Colors.white, fontSize: getDeviceWidth(context) * 0.03, fontWeight: FontWeight.bold, shadows: const [Shadow(color: Colors.black, blurRadius: 24.0, offset: Offset.zero)]), textAlign: TextAlign.center,),
+                        Text("Settings", style: TextStyle(color: Colors.white, fontSize: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.02 : getDeviceWidth(context) * 0.03, fontWeight: FontWeight.bold, shadows: const [Shadow(color: Colors.black, blurRadius: 24.0, offset: Offset.zero)]), textAlign: TextAlign.center,),
                         const Spacer(),
                       ],
                     ),

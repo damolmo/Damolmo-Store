@@ -27,7 +27,7 @@ class AppDescription extends StatelessWidget{
       ),
       child: ListView(
         children : [
-          Text(viewModel.app.appDescription, style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) * 0.05), textAlign: TextAlign.left,)]),
+          Text(viewModel.app.appDescription, style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.02 : getDeviceWidth(context) * 0.05), textAlign: TextAlign.left,)]),
 
     );
   }

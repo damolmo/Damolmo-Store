@@ -21,7 +21,7 @@ class AppBanner extends StatelessWidget{
       ),
       decoration: BoxDecoration(
         image: DecorationImage(
-          fit: BoxFit.fill,
+          fit: getDeviceWidth(context) > 580 ? BoxFit.fitWidth : BoxFit.fill,
           image: AssetImage(viewModel.app.appBanner)
         ),
         borderRadius: BorderRadius.circular(2)

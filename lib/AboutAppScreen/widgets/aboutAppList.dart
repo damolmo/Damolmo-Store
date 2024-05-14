@@ -14,18 +14,18 @@ class AboutAppList extends StatelessWidget{
   Widget build(BuildContext context){
     return Container(
       height: getDeviceHeight(context) * 0.6,
-      width: getDeviceWidth(context) * 0.9,
+      width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.5 : getDeviceWidth(context) * 0.9,
       margin: EdgeInsets.only(
         top: getDeviceHeight(context) * 0.3,
         bottom: getDeviceHeight(context) * 0.1,
-        left: getDeviceWidth(context) * 0.05,
-        right: getDeviceWidth(context) * 0.05
+        left: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.25 : getDeviceWidth(context) * 0.05,
+        right: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.25 : getDeviceWidth(context) * 0.05
       ),
       child: ListView.builder(
           itemCount: viewModel.aboutTitleString.length,
           itemBuilder: (context, index){
             return Container(
-              width: getDeviceWidth(context) * 0.85,
+              width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.045 : getDeviceWidth(context) * 0.85,
               height: getDeviceHeight(context) * 0.12,
               margin: EdgeInsets.only(
                 top: getDeviceHeight(context) * 0.025,
@@ -38,9 +38,9 @@ class AboutAppList extends StatelessWidget{
                 boxShadow: [BoxShadow(color: viewModel.fontColor.withOpacity(0.6), blurStyle: BlurStyle.normal, blurRadius: 6.0, spreadRadius: 3.0)]
               ),
               child: ListTile(
-                leading: Icon(viewModel.aboutIcons[index], size: 45, color: viewModel.fontColor,),
-                title: Text(viewModel.aboutTitleString[index], style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.05), textAlign: TextAlign.left,),
-                subtitle: Text(viewModel.aboutSubtitleString[index], style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.03), textAlign: TextAlign.left,),
+                leading: Icon(viewModel.aboutIcons[index], size: getDeviceWidth(context) > 580 ?  30 : 45, color: viewModel.fontColor,),
+                title: Text(viewModel.aboutTitleString[index], style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.02 : getDeviceWidth(context) * 0.05), textAlign: TextAlign.left,),
+                subtitle: Text(viewModel.aboutSubtitleString[index], style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.015 : getDeviceWidth(context) * 0.03), textAlign: TextAlign.left,),
               ),
             );
     },

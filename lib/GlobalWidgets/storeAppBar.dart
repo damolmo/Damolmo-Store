@@ -49,12 +49,13 @@ class StoreAppBar extends StatelessWidget{
 
           // Search Bar
           Container(
-            width: getDeviceWidth(context) * 0.6,
+            width: getDeviceWidth(context) > 580 ? getDeviceWidth(context) *  0.35 : getDeviceWidth(context) * 0.6,
             height: getDeviceHeight(context) * 0.7,
             margin: EdgeInsets.only(
               top: getDeviceHeight(context) * 0.015,
               bottom: getDeviceHeight(context) * 0.015,
-              right: getDeviceWidth(context) * 0.025
+              left: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.125 : 0.0,
+              right: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.15 : getDeviceWidth(context) * 0.025
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
@@ -76,12 +77,12 @@ class StoreAppBar extends StatelessWidget{
                   SystemChannels.textInput.invokeMethod('TextInput.hide');
                 }
               },
-              style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.05),
+              style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) > 580 ?  getDeviceWidth(context) * 0.03 : getDeviceWidth(context) * 0.05),
               textAlign: TextAlign.center,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: "Tap to search",
-                hintStyle: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.06,)
+                hintStyle: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) > 580 ?  getDeviceWidth(context) * 0.03 : getDeviceWidth(context) * 0.06,)
               ),
               controller: viewModel.searchField,
               keyboardType: TextInputType.name,

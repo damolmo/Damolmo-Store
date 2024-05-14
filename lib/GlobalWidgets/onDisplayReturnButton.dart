@@ -13,10 +13,10 @@ class OnDisplayReturnButton extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Container(
-      width: getDeviceWidth(context) * 0.15,
+      width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.04 : getDeviceWidth(context) * 0.15,
       height: getDeviceHeight(context) * 0.07,
       margin: EdgeInsets.only(
-        left: getDeviceWidth(context) * 0.8,
+        left: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.91 : getDeviceWidth(context) * 0.8,
         right: getDeviceWidth(context) * 0.05,
         top: getDeviceHeight(context) * 0.78,
         bottom: getDeviceHeight(context) * 0.15

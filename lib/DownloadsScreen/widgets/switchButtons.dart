@@ -13,13 +13,13 @@ class SwitchButtons extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Container(
-      width: getDeviceWidth(context) * 0.9,
+      width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.5 : getDeviceWidth(context) * 0.9,
       height: getDeviceHeight(context) * 0.1,
       margin: EdgeInsets.only(
         top: getDeviceHeight(context) * 0.15,
         bottom: getDeviceHeight(context) * 0.7,
-        left: getDeviceWidth(context) * 0.05,
-        right: getDeviceWidth(context) * 0.05
+        left: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.25 : getDeviceWidth(context) * 0.05,
+        right: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.25 : getDeviceWidth(context) * 0.05
       ),
       child: Row(
         children: [
@@ -30,10 +30,10 @@ class SwitchButtons extends StatelessWidget{
               viewModel.notifyListeners();
             },
             child : Container(
-              width: getDeviceWidth(context) * 0.3,
+              width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.15 : getDeviceWidth(context) * 0.3,
               height: getDeviceHeight(context) * 0.07,
               margin: EdgeInsets.only(
-                left: getDeviceWidth(context) *  0.125,
+                left: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.062 : getDeviceWidth(context) *  0.125,
                 right: getDeviceWidth(context) * 0.05,
                 top: getDeviceHeight(context) * 0.015,
                 bottom: getDeviceHeight(context) * 0.015
@@ -46,7 +46,7 @@ class SwitchButtons extends StatelessWidget{
               child: Row(
                 children: [
                   const Spacer(),
-                  Text("Updates", style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) * 0.05, fontWeight: FontWeight.bold),),
+                  Text("Updates", style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.02 : getDeviceWidth(context) * 0.05, fontWeight: FontWeight.bold),),
                   const Spacer(),
                 ],
               )
@@ -60,10 +60,10 @@ class SwitchButtons extends StatelessWidget{
               viewModel.notifyListeners();
             },
             child : Container(
-            width: getDeviceWidth(context) * 0.3,
+            width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.15 : getDeviceWidth(context) * 0.3,
             height: getDeviceHeight(context) * 0.07,
             margin: EdgeInsets.only(
-                right: getDeviceWidth(context) * 0.125,
+                right: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.042 : getDeviceWidth(context) * 0.125,
                 top: getDeviceHeight(context) * 0.015,
                 bottom: getDeviceHeight(context) * 0.015
             ),
@@ -75,7 +75,7 @@ class SwitchButtons extends StatelessWidget{
             child: Row(
               children: [
                 const Spacer(),
-                Text("Downloads", style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) * 0.05, fontWeight: FontWeight.bold),),
+                Text("Downloads", style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.02 : getDeviceWidth(context) * 0.05, fontWeight: FontWeight.bold),),
                 const Spacer(),
               ],
             ),

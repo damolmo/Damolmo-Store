@@ -13,11 +13,11 @@ class ReturnButtonSelector extends StatelessWidget{
   @override
   Widget build (BuildContext context){
     return Container(
-      width: getDeviceWidth(context) *  0.8,
+      width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.5 : getDeviceWidth(context) *  0.8,
       height: getDeviceHeight(context) * 0.6,
       margin: EdgeInsets.only(
-        left: getDeviceWidth(context) * 0.1,
-        right: getDeviceWidth(context) * 0.1,
+        left: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.25 : getDeviceWidth(context) * 0.1,
+        right: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.25 : getDeviceWidth(context) * 0.1,
         top: getDeviceHeight(context) * 0.2,
         bottom: getDeviceHeight(context) * 0.2
       ),
@@ -31,7 +31,7 @@ class ReturnButtonSelector extends StatelessWidget{
           // Text Banner
           Container(
             height: getDeviceHeight(context) * 0.15,
-            width: getDeviceWidth(context) * 0.5,
+            width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.4 : getDeviceWidth(context) * 0.5,
             margin: EdgeInsets.only(
               left: getDeviceWidth(context) * 0.05,
               right: getDeviceWidth(context) * 0.05,
@@ -51,8 +51,8 @@ class ReturnButtonSelector extends StatelessWidget{
 
                 // Banner text
                 SizedBox(
-                  width: getDeviceWidth(context) * 0.3,
-                  child: Text("Floating Return Button", style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.045), textAlign: TextAlign.left,),
+                  width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.15 : getDeviceWidth(context) * 0.3,
+                  child: Text("Floating Return Button", style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.025 : getDeviceWidth(context) * 0.045), textAlign: TextAlign.left,),
                 ),
               ],
             ),
@@ -61,7 +61,7 @@ class ReturnButtonSelector extends StatelessWidget{
           // Selector
           Container(
             height: getDeviceHeight(context) * 0.35,
-            width: getDeviceWidth(context) * 0.6,
+            width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.4 : getDeviceWidth(context) * 0.6,
             margin: EdgeInsets.only(
               bottom: getDeviceHeight(context) * 0.025
             ),
@@ -76,7 +76,7 @@ class ReturnButtonSelector extends StatelessWidget{
                     viewModel.notifyListeners();
                   },
                   child : Container(
-                  width: getDeviceWidth(context) * 0.55,
+                  width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.35 : getDeviceWidth(context) * 0.55,
                   height: getDeviceHeight(context) * 0.15,
                   margin: EdgeInsets.only(
                     left: getDeviceWidth(context) * 0.025,
@@ -107,7 +107,7 @@ class ReturnButtonSelector extends StatelessWidget{
                       viewModel.notifyListeners();
                       },
                      child :Container(
-                      width: getDeviceWidth(context) * 0.55,
+                      width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.35 : getDeviceWidth(context) * 0.55,
                       height: getDeviceHeight(context) * 0.15,
                       margin: EdgeInsets.only(
                           top: getDeviceHeight(context) * 0.02,

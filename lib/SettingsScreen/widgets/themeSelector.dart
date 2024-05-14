@@ -13,13 +13,13 @@ class ThemeSelector extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Container(
-      width: getDeviceWidth(context) * 0.7,
+      width: getDeviceWidth(context) > 580 ?  getDeviceWidth(context) *  0.3 : getDeviceWidth(context) * 0.7,
       height: getDeviceHeight(context) * 0.4,
       margin: EdgeInsets.only(
         top: getDeviceHeight(context) * 0.3,
         bottom: getDeviceHeight(context) * 0.3,
-        right: getDeviceWidth(context) * 0.15,
-        left: getDeviceWidth(context) * 0.15
+        right: getDeviceWidth(context) > 580 ?  getDeviceWidth(context) *  0.35 : getDeviceWidth(context) * 0.15,
+        left: getDeviceWidth(context) > 580 ?  getDeviceWidth(context) * 0.35 : getDeviceWidth(context) * 0.15
       ),
       decoration: BoxDecoration(
         color: viewModel.backgroundColor.withOpacity(0.8),
@@ -30,33 +30,33 @@ class ThemeSelector extends StatelessWidget{
         children: [
           // Themes Windows Banner
           Container(
-            width: getDeviceWidth(context) * 0.5,
+            width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.25 : getDeviceWidth(context) * 0.5,
             height: getDeviceHeight(context) * 0.1,
             margin: EdgeInsets.only(
               top: getDeviceHeight(context) * 0.025,
-              left: getDeviceWidth(context) * 0.05,
-              right: getDeviceWidth(context) * 0.05,
+              left: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.025 : getDeviceWidth(context) * 0.05,
+              right: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.025 : getDeviceWidth(context) * 0.05,
             ),
             child: Row(
               children: [
                 // Theme Icon
                 Container(
-                  width: getDeviceWidth(context) * 0.2,
+                  width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.10 : getDeviceWidth(context) * 0.2,
                   height: getDeviceHeight(context) * 0.1,
-                  child: Icon(Icons.palette, color: viewModel.fontColor, size: 45,),
+                  child: Icon(Icons.palette, color: viewModel.fontColor, size: getDeviceWidth(context) > 580 ?  44 : 45,),
                 ),
 
                 // Theme Text
                 Container(
-                  width: getDeviceWidth(context) * 0.25,
+                  width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.15 : getDeviceWidth(context) * 0.25,
                   height: getDeviceHeight(context) * 0.1,
                   margin: EdgeInsets.only(
-                      right: getDeviceWidth(context) * 0.05
+                      right: getDeviceWidth(context) > 580 ?  0.0 :getDeviceWidth(context) * 0.05
                   ),
                   child: Column(
                     children: [
                       const Spacer(),
-                    Text("Themes", style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) * 0.05, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
+                    Text("Themes", style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) > 580 ?  getDeviceWidth(context) * 0.03 : getDeviceWidth(context) * 0.05, fontWeight: FontWeight.bold), textAlign: getDeviceWidth(context) > 580 ?  TextAlign.left : TextAlign.center,),
                     const Spacer(),
                     ],
                   ),
@@ -66,7 +66,7 @@ class ThemeSelector extends StatelessWidget{
 
           // Theme Selection
           Container(
-            width: getDeviceWidth(context) * 0.6,
+            width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.3 : getDeviceWidth(context) * 0.6,
             height: getDeviceHeight(context) * 0.25,
             margin: EdgeInsets.only(
             ),
@@ -82,22 +82,22 @@ class ThemeSelector extends StatelessWidget{
                         viewModel.restartApp();
                       },
                       child : Container(
-                        width: getDeviceWidth(context) * 0.5,
+                        width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.3 : getDeviceWidth(context) * 0.5,
                         height: getDeviceHeight(context) * 0.1,
                         margin: EdgeInsets.only(
                           top: getDeviceHeight(context) * 0.015,
-                          left: getDeviceWidth(context) * 0.05,
-                            right: getDeviceWidth(context) * 0.05,
+                          left: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.025 : getDeviceWidth(context) * 0.05,
+                            right: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.0 : getDeviceWidth(context) * 0.05,
                         ),
                         child: Row(
                           children: [
                             // Color Icon
                             Container(
                               height : getDeviceHeight(context) * 0.06,
-                              width: getDeviceWidth(context) * 0.13,
+                              width: getDeviceWidth(context) > 580 ?  getDeviceWidth(context) * 0.032 : getDeviceWidth(context) * 0.13,
                               margin: EdgeInsets.only(
                                 left: getDeviceWidth(context) * 0.02,
-                                right: getDeviceWidth(context) * 0.03
+                                right: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.02 : getDeviceWidth(context) * 0.03
                               ),
                               decoration: BoxDecoration(
                                   color:  Color(int.parse(viewModel.themes[index].themeBackgroundColor, radix : 16)),
@@ -108,11 +108,10 @@ class ThemeSelector extends StatelessWidget{
 
                             // Color Text
                             Container(
-                              width: getDeviceWidth(context) * 0.3,
+                              width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.2 : getDeviceWidth(context) * 0.3,
                               margin: EdgeInsets.only(
-                                right: getDeviceWidth(context) * 0.02
                               ),
-                              child: Text(viewModel.themes[index].themeName, style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) * 0.05, fontWeight: FontWeight.bold),),
+                              child: Text(viewModel.themes[index].themeName, style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) > 580 ?  getDeviceWidth(context) * 0.03 : getDeviceWidth(context) * 0.05, fontWeight: FontWeight.bold), textAlign: getDeviceWidth(context) > 580 ? TextAlign.left : TextAlign.center,),
                             )
 
                           ],

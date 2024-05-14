@@ -35,9 +35,9 @@ class AppFooter extends StatelessWidget{
                 color: viewModel.backgroundColor
               ),
               child: ListTile(
-                leading: Icon(viewModel.appDetailsIcons[index], color: viewModel.fontColor, size: 35,),
-                title: Text(viewModel.appDetailsStr[index], style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) * 0.05, fontWeight:  FontWeight.bold),),
-                trailing: Text(viewModel.appDetailsValues[index], style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) * 0.03),),
+                leading: Icon(viewModel.appDetailsIcons[index], color: viewModel.fontColor, size: getDeviceWidth(context) > 580 ? 25 : 35,),
+                title: Text(viewModel.appDetailsStr[index], style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.025 : getDeviceWidth(context) * 0.05, fontWeight:  FontWeight.bold),),
+                trailing: Text(viewModel.appDetailsValues[index], style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.015 : getDeviceWidth(context) * 0.03),),
               ),
             );
           }

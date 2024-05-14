@@ -13,11 +13,11 @@ class TrackingApps extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Container(
-      width: getDeviceWidth(context) * 0.8,
+      width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.5 : getDeviceWidth(context) * 0.8,
       height: getDeviceHeight(context) * 0.6,
       margin: EdgeInsets.only(
-        left: getDeviceWidth(context) * 0.1,
-        right: getDeviceWidth(context) * 0.1,
+        left: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.25 : getDeviceWidth(context) * 0.1,
+        right: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.25 : getDeviceWidth(context) * 0.1,
         top: getDeviceHeight(context) * 0.2,
         bottom: getDeviceHeight(context) * 0.2,
       ),
@@ -30,7 +30,7 @@ class TrackingApps extends StatelessWidget{
           itemCount: viewModel.tracking.length,
           itemBuilder: (context, index){
             return Container(
-            width: getDeviceWidth(context) * 0.7,
+            width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.4 : getDeviceWidth(context) * 0.7,
             height: getDeviceHeight(context) * 0.15,
               margin: EdgeInsets.only(
                 top: getDeviceHeight(context) * 0.025,
@@ -43,9 +43,9 @@ class TrackingApps extends StatelessWidget{
               ),
               child: ListTile(
                 leading: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), boxShadow: [BoxShadow(color: viewModel.fontColor.withOpacity(0.6))]),child : Image.asset(viewModel.tracking[index].appIcon),),
-                title: Text(viewModel.tracking[index].appName, style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.04),),
-                subtitle: Text(viewModel.tracking[index].appVersion, style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.035),),
-                trailing: IconButton(onPressed :(){viewModel.removeSelectedAppFromTracking(viewModel.tracking[index]);}, icon: const Icon(Icons.remove_circle_rounded, color: Colors.red, size: 40,),)
+                title: Text(viewModel.tracking[index].appName, style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.025 : getDeviceWidth(context) * 0.04),),
+                subtitle: Text(viewModel.tracking[index].appVersion, style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.02 : getDeviceWidth(context) * 0.035),),
+                trailing: IconButton(onPressed :(){viewModel.removeSelectedAppFromTracking(viewModel.tracking[index]);}, icon: Icon(Icons.remove_circle_rounded, color: Colors.red, size: getDeviceWidth(context) > 580 ?  30 : 40,),)
 
 
               ),

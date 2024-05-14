@@ -14,11 +14,11 @@ class SettingsList extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Container(
-      width: getDeviceWidth(context) * 0.95,
+      width: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.5 : getDeviceWidth(context) * 0.95,
       height: getDeviceHeight(context) * 0.7,
       margin: EdgeInsets.only(
-        left: getDeviceWidth(context) * 0.025,
-        right: getDeviceWidth(context) * 0.025,
+        left: getDeviceWidth(context) > 580 ?  getDeviceWidth(context) * 0.25 : getDeviceWidth(context) * 0.025,
+        right: getDeviceWidth(context) > 580 ?  getDeviceWidth(context) * 0.25 : getDeviceWidth(context) * 0.025,
         top: getDeviceHeight(context) * 0.15,
         bottom: getDeviceHeight(context) * 0.15
       ),
@@ -57,7 +57,7 @@ class SettingsList extends StatelessWidget{
                   ),
                   child: ListTile(
                     leading: Icon(IconData(viewModel.settings[index].settingIcon, fontFamily: 'MaterialIcons'), color: viewModel.fontColor,),
-                    title: Text(viewModel.settings[index].settingName, style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.05),),
+                    title: Text(viewModel.settings[index].settingName, style: TextStyle(color: viewModel.fontColor, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.03 : getDeviceWidth(context) * 0.05),),
                   ),
                 ),
             );

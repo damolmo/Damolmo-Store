@@ -23,7 +23,7 @@ class AppDetails extends StatelessWidget{
         children: [
           // App Logo
           Container(
-            width: getDeviceWidth(context) * 0.2,
+            width: getDeviceWidth(context) > 580 ? getDeviceWidth(context) *  0.15 : getDeviceWidth(context) * 0.2,
             height: getDeviceHeight(context) * 0.1,
             margin: EdgeInsets.only(
               left: getDeviceWidth(context) * 0.05,
@@ -54,7 +54,7 @@ class AppDetails extends StatelessWidget{
               top: getDeviceHeight(context) * 0.025
             ),
             decoration: BoxDecoration(),
-            child: Text("${viewModel.app.appName}\n${viewModel.app.appAuthor}", style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) * 0.055, fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
+            child: Text("${viewModel.app.appName}\n${viewModel.app.appAuthor}", style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) > 580 ? getDeviceWidth(context) *  0.027 : getDeviceWidth(context) * 0.055, fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
           ),
 
           Container(
@@ -71,10 +71,11 @@ class AppDetails extends StatelessWidget{
 
           // App Download/Open Buttons
           Container(
-            width: getDeviceWidth(context) * 0.99,
+            width: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.4 : getDeviceWidth(context) * 0.99,
             height: getDeviceHeight(context) * 0.07,
             margin: EdgeInsets.only(
-              top: getDeviceHeight(context) * 0.12
+              left: getDeviceWidth(context) > 580 ? viewModel.app.appWebUrl.isEmpty ? getDeviceWidth(context) *  0.75 : getDeviceWidth(context) * 0.62 : 0.0,
+              top: getDeviceWidth(context) > 580 ?  getDeviceHeight(context) * 0.075 : getDeviceHeight(context) * 0.12
             ),
             child: Row(
               children: [
@@ -113,10 +114,10 @@ class AppDetails extends StatelessWidget{
 
                   },
                     child : Container(
-                      width: viewModel.app.appWebUrl.isEmpty ? getDeviceWidth(context) * 0.65 : getDeviceWidth(context) * 0.315,
+                      width: viewModel.app.appWebUrl.isEmpty ? getDeviceWidth(context) > 580 ? getDeviceWidth(context) *  0.2 : getDeviceWidth(context) * 0.151 : getDeviceWidth(context) > 580 ? getDeviceWidth(context) *  0.15 : getDeviceWidth(context) * 0.315,
                       height: getDeviceHeight(context) * 0.07,
                       margin: EdgeInsets.only(
-                        right: getDeviceWidth(context) * 0.025
+                        right: getDeviceWidth(context) > 580 && viewModel.app.appWebUrl.isEmpty ? getDeviceWidth(context) *  0.03 : getDeviceWidth(context) * 0.025
                       ),
                       decoration: BoxDecoration(
                         color: Colors.blueAccent,
@@ -128,22 +129,22 @@ class AppDetails extends StatelessWidget{
                           // Android Icon
                           Container(
                             height : getDeviceHeight(context) * 0.05,
-                            width: getDeviceWidth(context) * 0.1,
+                            width: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.05 : getDeviceWidth(context) * 0.1,
                             margin: EdgeInsets.only(
                               top: getDeviceHeight(context) * 0.01,
                               bottom: getDeviceHeight(context) * 0.01
                             ),
-                            child: const Icon(Icons.android_rounded, color: Colors.white, size: 35,),
+                            child: Icon(Icons.android_rounded, color: Colors.white, size: getDeviceWidth(context) > 580 ? 25 : 35,),
                           ),
 
                           // Button Text
                           Container(
-                            width: getDeviceWidth(context) * 0.2,
+                            width: getDeviceWidth(context) > 580 ? getDeviceWidth(context) *  0.1 : getDeviceWidth(context) * 0.2,
                             height: getDeviceHeight(context) * 0.05,
                             margin: EdgeInsets.only(
-                              left: viewModel.app.appWebUrl.isEmpty ? getDeviceWidth(context) * 0.15 : 0.0
+                              left: viewModel.app.appWebUrl.isEmpty ? getDeviceWidth(context) > 580 ? 0.0 : getDeviceWidth(context) * 0.15 : 0.0
                             ),
-                            child: Row(children : [Text(viewModel.downloadProgress != "100%" && viewModel.downloadProgress.isNotEmpty ? viewModel.downloadProgress :  viewModel.downloadFileExists ? "Install" : "Download", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.04), textAlign: TextAlign.center,)]),
+                            child: Row(children : [Text(viewModel.downloadProgress != "100%" && viewModel.downloadProgress.isNotEmpty ? viewModel.downloadProgress :  viewModel.downloadFileExists ? "Install" : "Download", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.015 : getDeviceWidth(context) * 0.04), textAlign: TextAlign.center,)]),
                           )
                         ],
                       ) ,
@@ -157,7 +158,7 @@ class AppDetails extends StatelessWidget{
                   viewModel.openUrl();
                   },
                   child : Container(
-                    width: getDeviceWidth(context) * 0.325,
+                    width: getDeviceWidth(context) > 580 ? getDeviceWidth(context) *  0.15 : getDeviceWidth(context) * 0.325,
                     height: getDeviceHeight(context) * 0.07,
                     margin: EdgeInsets.only(
                         right: getDeviceWidth(context) * 0.025
@@ -172,21 +173,21 @@ class AppDetails extends StatelessWidget{
                         // Android Icon
                         Container(
                           height : getDeviceHeight(context) * 0.05,
-                          width: getDeviceWidth(context) * 0.1,
+                          width: getDeviceWidth(context) > 580 ? getDeviceWidth(context) *  0.05 : getDeviceWidth(context) * 0.1,
                           margin: EdgeInsets.only(
                               top: getDeviceHeight(context) * 0.01,
                               bottom: getDeviceHeight(context) * 0.01
                           ),
-                          child: const Icon(Icons.laptop_rounded, color: Colors.white, size: 35,),
+                          child: Icon(Icons.laptop_rounded, color: Colors.white, size: getDeviceWidth(context) > 580 ? 25 : 35,),
                         ),
 
                         // Button Text
                         Container(
-                          width: getDeviceWidth(context) * 0.2,
+                          width: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.1 : getDeviceWidth(context) * 0.2,
                           height: getDeviceHeight(context) * 0.05,
                           margin: EdgeInsets.only(
                           ),
-                          child: Row(children : [Text("Open", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) * 0.04), textAlign: TextAlign.center,)]),
+                          child: Row(children : [Text("Open", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.015 : getDeviceWidth(context) * 0.04), textAlign: TextAlign.center,)]),
                         )
                       ],
                     ) ,

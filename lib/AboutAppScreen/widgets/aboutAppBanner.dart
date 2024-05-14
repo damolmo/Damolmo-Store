@@ -13,11 +13,11 @@ class AboutAppBanner extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Container(
-      width: getDeviceWidth(context) * 0.9,
+      width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.7 : getDeviceWidth(context) * 0.9,
       height: getDeviceHeight(context) * 0.2,
       margin: EdgeInsets.only(
-        left: getDeviceWidth(context) * 0.05,
-        right: getDeviceWidth(context) * 0.05,
+        left: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.15 : getDeviceWidth(context) * 0.05,
+        right: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.15 : getDeviceWidth(context) * 0.05,
         top: getDeviceHeight(context) * 0.05,
         bottom: getDeviceHeight(context) * 0.75
       ),
@@ -38,8 +38,8 @@ class AboutAppBanner extends StatelessWidget{
 
           // App Text
           Container(
-            width: getDeviceWidth(context) * 0.65,
-            child: Text("Damolmo Store", style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) * 0.09, fontWeight: FontWeight.bold),),
+            width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.45 : getDeviceWidth(context) * 0.65,
+            child: Text("Damolmo Store", style: TextStyle(color: viewModel.fontColor, fontSize: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.05 : getDeviceWidth(context) * 0.09, fontWeight: FontWeight.bold),),
           ),
         ],
       ),

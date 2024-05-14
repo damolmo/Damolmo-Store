@@ -17,8 +17,6 @@ class DamolmoStore extends StatelessWidget{
     super.key
   });
 
-  String url =  "";
-
  @override
  Widget build(BuildContext context){
    SystemChrome.setPreferredOrientations([
@@ -28,7 +26,7 @@ class DamolmoStore extends StatelessWidget{
 
    return MaterialApp(
      debugShowCheckedModeBanner: false,
-     home: getDeviceWidth(context) < 580 ?  HomeScreenView(isAppInit: true, uri: url,) : Container() ,
+     home: HomeScreenView(isAppInit: true, uri: "url",),
      routes: {
      },
    );
