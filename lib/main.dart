@@ -28,6 +28,7 @@ class DamolmoStore extends StatelessWidget{
      debugShowCheckedModeBanner: false,
      home: HomeScreenView(isAppInit: true, uri: "url",),
      routes: {
+       "home" : (_) => HomeScreenView(isAppInit: false, uri: "",),
      },
    );
  }

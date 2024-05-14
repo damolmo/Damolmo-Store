@@ -98,13 +98,12 @@ class SettingsScreenModel extends HomeScreenModel implements Initialisable{
               settingIcon: Icons.palette.codePoint));
   }
 
-  restartApp(BuildContext context){
+  restartApp(){
     CountdownTimer timer = CountdownTimer(const Duration(seconds: 1), const Duration(seconds: 1));
     // Await some time
     var listener = timer.listen(null);
     listener.onData((data) {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreenView(isAppInit: true, uri: "")));
-
+      Navigator.of(context).restorablePushReplacementNamed("home");
     });
   }
 

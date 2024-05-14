@@ -74,7 +74,7 @@ class AppDetails extends StatelessWidget{
             width: getDeviceWidth(context) > 580 ? getDeviceWidth(context) * 0.4 : getDeviceWidth(context) * 0.99,
             height: getDeviceHeight(context) * 0.07,
             margin: EdgeInsets.only(
-              left: getDeviceWidth(context) > 580 ? viewModel.app.appWebUrl.isEmpty ? getDeviceWidth(context) *  0.75 : getDeviceWidth(context) * 0.62 : getDeviceWidth(context) * 0.3,
+              left: getDeviceWidth(context) > 580 ? viewModel.app.appWebUrl.isEmpty ? getDeviceWidth(context) *  0.75 : getDeviceWidth(context) * 0.62 : kIsWeb ? getDeviceWidth(context) * 0.3 : 0.0,
               top: getDeviceWidth(context) > 580 ?  getDeviceHeight(context) * 0.075 : getDeviceHeight(context) * 0.12
             ),
             child: Row(

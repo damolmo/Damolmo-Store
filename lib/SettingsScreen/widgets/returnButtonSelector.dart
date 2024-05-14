@@ -72,7 +72,7 @@ class ReturnButtonSelector extends StatelessWidget{
                   onTap : (){
                     viewModel.isReturnButtonWindows = false;
                     viewModel.setDisplayButton("enabled");
-                    viewModel.restartApp(context);
+                    viewModel.restartApp();
                     viewModel.notifyListeners();
                   },
                   child : Container(
@@ -103,7 +103,7 @@ class ReturnButtonSelector extends StatelessWidget{
                       onTap : (){
                       viewModel.isReturnButtonWindows = false;
                       viewModel.setDisplayButton("disabled");
-                      viewModel.restartApp(context);
+                      viewModel.restartApp();
                       viewModel.notifyListeners();
                       },
                      child :Container(
