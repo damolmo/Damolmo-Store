@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../../exports.dart';
 
@@ -78,6 +79,7 @@ class AppDetails extends StatelessWidget{
             child: Row(
               children: [
 
+                if (!kIsWeb)
                 Container(
                   width: getDeviceWidth(context) * 0.15,
                   height: getDeviceHeight(context) * 0.07,
