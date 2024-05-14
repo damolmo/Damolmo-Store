@@ -3,7 +3,6 @@ import 'package:quiver/async.dart';
 import 'package:stacked/stacked.dart';
 import '../exports.dart';
 import 'package:flutter/material.dart';
-import 'package:restart_app/restart_app.dart';
 
 class SettingsScreenModel extends HomeScreenModel implements Initialisable{
 
@@ -105,7 +104,7 @@ class SettingsScreenModel extends HomeScreenModel implements Initialisable{
     var listener = timer.listen(null);
     listener.onData((data) {
       // Restart app
-      Restart.restartApp();
+      //Restart.restartApp();
     });
   }
 
