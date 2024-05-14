@@ -40169,7 +40169,7 @@ a1=A.ax(f,f,B.i,f,new A.b7(A.R(153,a5>>>16&255,a5>>>8&255,a5&255),f,f,f,f,f,B.r)
 a2=A.c(b0,f,e).w.a.a>580?A.c(b0,f,e).w.a.a*0.4:A.c(b0,f,e).w.a.a*0.99
 a3=A.c(b0,f,e).w
 if(A.c(b0,f,e).w.a.a>580)a5=a4.Q.length===0?A.c(b0,f,e).w.a.a*0.75:A.c(b0,f,e).w.a.a*0.62
-else a5=0
+else a5=A.c(b0,f,e).w.a.a*0.3
 a6=A.c(b0,f,e).w.a.a>580?A.c(b0,f,e).w.a.b*0.075:A.c(b0,f,e).w.a.b*0.12
 r=t.p
 q=A.a([],r)
