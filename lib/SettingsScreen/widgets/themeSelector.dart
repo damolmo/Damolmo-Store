@@ -79,7 +79,7 @@ class ThemeSelector extends StatelessWidget{
                         viewModel.changeTheme(viewModel.themes[index].themeName);
                         viewModel.isThemeSelection = false;
                         viewModel.notifyListeners();
-                        viewModel.restartApp();
+                        viewModel.restartApp(context);
                       },
                       child : Container(
                         width: getDeviceWidth(context) > 580 ?   getDeviceWidth(context) * 0.3 : getDeviceWidth(context) * 0.5,
