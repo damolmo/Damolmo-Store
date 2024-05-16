@@ -83,6 +83,7 @@ flutter:
     - assets/apps/cards_pocket/
     - assets/apps/fast_notes/
     - assets/apps/horizon/
+    - assets/apps/smart_cuisine/
     - assets/apps/material_dialer/
     - assets/apps/material_downloader/
     - assets/apps/message_direct/
