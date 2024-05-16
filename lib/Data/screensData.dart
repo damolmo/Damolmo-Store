@@ -110,6 +110,18 @@ class ScreensData {
       "screen_4" : "assets/apps/damolmo_store/screens/screen_4.png",
       "screen_5" : "assets/apps/damolmo_store/screens/screen_5.png",
     },
+
+    "Smart Cuisine" : {
+      "screen_0" : "assets/apps/smart_cuisine/screens/screen_0.png",
+      "screen_1" : "assets/apps/smart_cuisine/screens/screen_1.png",
+      "screen_2" : "assets/apps/smart_cuisine/screens/screen_2.png",
+      "screen_3" : "assets/apps/smart_cuisine/screens/screen_3.png",
+      "screen_4" : "assets/apps/smart_cuisine/screens/screen_4.png",
+      "screen_5" : "assets/apps/smart_cuisine/screens/screen_5.png",
+      "screen_6" : "assets/apps/smart_cuisine/screens/screen_6.png",
+      "screen_7" : "assets/apps/smart_cuisine/screens/screen_7.png",
+      "screen_8" : "assets/apps/smart_cuisine/screens/screen_8.png",
+    },
   };
 
 
